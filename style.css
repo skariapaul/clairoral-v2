@@ -1,0 +1,581 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500;1,600&display=swap");
+
+/* ---------------------------------------------------------------------------
+   Minimal reset.
+
+   The design was authored against Tailwind's preflight, which we no longer
+   ship. Only the resets the layout actually depends on are reproduced here -€
+   margin collapse on headings/paragraphs, inherited typography on form
+   controls, and block-level replaced elements.
+   --------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, p, figure, blockquote, ol, ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol { list-style: none; }
+
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  margin: 0;
+}
+
+a { color: inherit; }
+
+/* Brand type stacks. Defined in Tailwind's theme layer originally. */
+:root {
+  --app-font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --app-font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --app-font-mono: "DM Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Visible focus. The original build removed outlines without replacing them. */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+
+/* === Clair design system ================================================ */
+:root{--ink:#30264b;--violet:#7134c4;--violet-deep:#4d237e;--paper:#f6f0e8;--lavender:#e9deef;--coral:#f59682;--lime:#d6e68d;--sky:#a9d9db}*{box-sizing:border-box}.clair-site{background:var(--paper);color:var(--ink);overflow:hidden}.section-shell{width:min(1220px,100% - 96px);margin:0 auto}.announcement{background:var(--ink);color:#f5efe6;height:35px;font:500 10px var(--app-font-mono);letter-spacing:.04em;justify-content:center;align-items:center;gap:9px;display:flex}.announcement a{color:var(--coral);align-items:center;gap:3px;margin-left:9px;text-decoration:none;display:inline-flex}.announcement-dot{background:var(--coral);border-radius:50%;width:6px;height:6px}.site-header{z-index:20;height:83px;transition:background .3s,box-shadow .3s;position:sticky;top:0}.site-header-scrolled{-webkit-backdrop-filter:blur(15px);backdrop-filter:blur(15px);background:#f6f0e8e3;box-shadow:0 1px #30264b1a}.header-inner{justify-content:space-between;align-items:center;width:min(1360px,100% - 96px);height:100%;margin:0 auto;display:flex}.brand-mark{color:var(--violet);align-items:center;gap:7px;text-decoration:none;display:inline-flex;position:relative}.brand-mark img{object-fit:contain;width:137px;height:auto;display:block}.brand-orbit{border:2px solid;border-radius:50%;width:16px;height:16px;display:inline-block;position:relative;transform:rotate(-34deg)}.brand-orbit:after{content:"";background:currentColor;border-radius:50%;width:5px;height:5px;position:absolute;top:3px;left:2px}.brand-mark-light{color:var(--coral)}.main-nav{gap:35px;margin-left:auto;margin-right:56px;display:flex}.main-nav button,.footer-nav button{color:inherit;cursor:pointer;background:0 0;border:0;padding:7px 0;font-size:12px;font-weight:700}.main-nav button:hover,.footer-nav button:hover{color:var(--violet)}.header-cta,.button{cursor:pointer;letter-spacing:.01em;border:0;justify-content:center;align-items:center;gap:10px;font-size:11px;font-weight:800;transition:transform .2s,background .2s,color .2s;display:inline-flex}.header-cta{background:var(--violet);color:var(--paper);padding:14px 19px}.header-cta:hover,.button:hover{transform:translateY(-2px)}.menu-toggle{color:var(--ink);background:0 0;border:0;display:none}.hero{grid-template-columns:48% 52%;min-height:690px;padding-top:96px;display:grid;position:relative}.eyebrow{font:500 10px var(--app-font-mono);color:var(--violet);text-transform:uppercase;letter-spacing:.13em;margin:0 0 25px}.hero-title,h2{font:800 clamp(55px,7vw,98px)/.91 var(--app-font-sans);letter-spacing:-.09em;margin:0}h2{font-size:clamp(48px,6.7vw,82px)}h1 em,h2 em,.enquiry-modal h2 em{font:500 1.03em/.95 var(--app-font-serif);letter-spacing:-.075em}.hero-text{color:#615977;max-width:365px;margin:34px 0;font-size:14px;line-height:1.65}.hero-actions{align-items:center;gap:26px;display:flex}.button-primary{background:var(--violet);color:var(--paper);padding:17px 20px}.button-primary:hover{background:var(--violet-deep)}.button-dark{background:var(--ink);color:var(--paper);padding:15px 19px}.text-link{cursor:pointer;color:var(--ink);background:0 0;border:0;border-bottom:1px solid #ae9ebc;align-items:center;gap:7px;padding:0 0 5px;font-size:11px;font-weight:800;text-decoration:none;display:inline-flex}.text-link:hover{color:var(--violet);border-color:var(--violet)}.hero-art{background:var(--lavender);height:480px;margin-top:-25px;position:relative;overflow:hidden}.hero-sun{background:#d4bfdc;border-radius:50%;width:360px;height:360px;position:absolute;top:55px;right:12%}.hero-grid{opacity:.23;background-image:linear-gradient(#7034c42e 1px,#0000 1px),linear-gradient(90deg,#7034c42e 1px,#0000 1px);background-size:29px 29px;position:absolute;inset:0}.hero-orbit{border:1px solid #7034c459;border-radius:50%;width:575px;height:190px;position:absolute;top:145px;right:-70px;transform:rotate(-21deg)}.orbit-two{width:490px;height:150px;top:170px;right:-28px;transform:rotate(28deg)}.product-visual{justify-content:center;align-items:center;height:215px;display:flex;position:relative;overflow:hidden}.product-visual-large{width:410px;height:440px;position:absolute;top:14px;right:112px;overflow:visible}.visual-shadow{filter:blur(7px);background:#30264b29;border-radius:50%;width:170px;height:23px;position:absolute;bottom:19px}.product-visual-large .visual-shadow{width:220px;bottom:28px}.pack-tube{background:#bc9dd8;border-radius:9px 9px 4px 4px;width:118px;height:235px;position:relative;transform:rotate(7deg);box-shadow:-11px 14px #41256117}.product-visual-large .pack-tube{border-radius:12px 12px 5px 5px;width:150px;height:315px}.pack-tube:before{content:"";border:1px solid #ffffff6e;border-radius:6px;position:absolute;inset:8px 8px 42px}.pack-cap{background:#8252a5;border-radius:1px 1px 5px 5px;height:17px;position:absolute;bottom:-14px;left:0;right:0}.product-visual-large .pack-cap{height:23px;bottom:-19px}.pack-label{text-align:center;color:#45365d;flex-direction:column;display:flex;position:absolute;inset:53% 8px auto;transform:translateY(-50%)}.pack-label small{font:800 8px var(--app-font-sans);letter-spacing:.13em}.pack-label strong{font:800 25px var(--app-font-sans);letter-spacing:-.1em}.pack-label i{font:normal 8px var(--app-font-mono);margin-top:14px}.product-visual-large .pack-label strong{font-size:34px}.official-product-image{z-index:1;object-fit:contain;object-position:center;filter:drop-shadow(0 18px 14px #30264b29);width:84%;height:92%;transition:transform .35s;display:block;position:relative}.product-card:hover .official-product-image{transform:scale(1.04)translateY(-3px)}.product-visual-large .official-product-image{width:94%;height:100%}.visual-coral .pack-tube{background:var(--coral)}.visual-coral .pack-cap{background:#ce776a}.visual-sky .pack-tube{background:var(--sky)}.visual-sky .pack-cap{background:#69aeb6}.visual-lilac .pack-tube{background:#c4a5dc}.visual-lime .pack-tube{background:var(--lime)}.visual-lime .pack-cap{background:#a9bd61}.visual-ink .product-visual{background:var(--ink)}.pack-brush{width:90px;height:210px;position:relative;transform:rotate(13deg)}.brush-head{border:3px solid var(--ink);background:#b3d8d4;border-radius:17px 17px 11px 11px;gap:3px;width:34px;height:57px;padding:7px;display:flex;position:absolute;top:0;left:27px}.brush-head span{background:var(--violet);border-radius:2px;width:3px;height:19px}.brush-neck{background:var(--ink);width:11px;height:46px;position:absolute;top:52px;left:39px}.brush-handle{border:3px solid var(--ink);width:40px;height:122px;color:var(--paper);background:#774fc1;border-radius:18px 18px 14px 14px;flex-direction:column;justify-content:end;align-items:center;padding-bottom:14px;display:flex;position:absolute;top:90px;left:24px}.brush-handle b{letter-spacing:-.07em;font-size:10px}.brush-handle i{font:normal 6px var(--app-font-mono);margin-top:14px}.visual-ink .pack-brush{transform:rotate(13deg)scale(1.05)}.visual-ink{background:#d5d0df}.pack-floss{width:125px;height:135px;position:relative}.floss-disc{background:#e7d875;border:3px solid #a99c46;border-radius:50%;flex-direction:column;justify-content:center;align-items:center;width:116px;height:116px;font-size:13px;font-weight:800;display:flex;position:absolute;box-shadow:inset 0 0 0 17px #f3e9a3}.floss-disc i{font:normal 7px var(--app-font-mono);margin-top:9px}.floss-line{background:var(--violet);width:3px;height:86px;position:absolute;top:21px;right:-3px;transform:rotate(26deg)}.pack-wash{width:110px;height:190px;position:relative}.wash-body{color:#32564e;background:#aed5c9;border:3px solid #4c776e;border-radius:28px 28px 20px 20px;flex-direction:column;justify-content:center;align-items:center;width:90px;height:154px;font-size:14px;font-weight:800;display:flex;position:absolute;bottom:0}.wash-body i{font:normal 7px var(--app-font-mono);margin-top:14px}.wash-cap{border:3px solid #4c776e;border-bottom:0;border-radius:10px 10px 0 0;width:30px;height:27px;position:absolute;top:3px;left:35px}.wash-nozzle{border:3px solid #4c776e;border-left:0;border-radius:0 10px 10px 0;width:55px;height:10px;position:absolute;top:11px;left:65px;transform:rotate(-23deg)}.visual-code{font:9px var(--app-font-mono);color:#30264b99;position:absolute;top:20px;left:24px}.hero-sticker{z-index:3;background:var(--coral);text-align:center;border-radius:50%;place-content:center;width:74px;height:74px;font-size:22px;font-weight:800;line-height:.9;display:grid;position:absolute;top:30px;right:31px;transform:rotate(9deg)}.hero-sticker span{font:8px var(--app-font-mono);letter-spacing:.06em}.hero-mini-card{z-index:3;background:var(--paper);width:151px;color:var(--ink);grid-template-columns:1fr auto;padding:16px;display:grid;position:absolute;bottom:29px;left:29px}.hero-mini-card span{font:8px var(--app-font-mono);color:var(--violet);grid-column:1/-1;margin-bottom:10px}.hero-mini-card strong{font-size:15px;line-height:1.05}.hero-mini-card svg{align-self:end}.hero-bottom{font:9px var(--app-font-mono);text-transform:uppercase;letter-spacing:.1em;color:#71667d;grid-column:1/-1;align-items:center;gap:17px;margin-top:21px;display:flex}.hero-rule{background:#c9bdd2;flex:1;height:1px}.marquee-band{background:var(--violet);color:var(--paper);align-items:center;height:70px;display:flex;overflow:hidden}.marquee-track{white-space:nowrap;letter-spacing:-.05em;align-items:center;gap:34px;font-size:21px;animation:28s linear infinite marquee;display:flex}.marquee-track b{color:var(--coral);font-size:27px}@keyframes marquee{to{transform:translate(-25%)}}.intro{grid-template-columns:15% 50% 35%;min-height:545px;padding-top:125px;display:grid;position:relative}.section-index{font:10px var(--app-font-mono);color:var(--violet)}.section-index span{color:#c3b2c5;margin:0 5px}.intro-heading h2{font-size:clamp(50px,6.6vw,82px)}.intro-copy{color:#706479;align-self:end;max-width:290px;padding-bottom:75px;font-size:13px;line-height:1.7}.intro-copy p{margin:0 0 18px}.intro-copy .text-link{margin-top:20px}.range-section{background:var(--lavender);padding:112px 0 85px}.range-header{justify-content:space-between;align-items:end;margin-bottom:56px;display:flex}.range-header h2{font-size:clamp(55px,6.6vw,80px)}.range-note{color:#6d5f77;align-items:start;gap:17px;width:280px;font-size:12px;line-height:1.6;display:flex}.range-note span{font:10px var(--app-font-mono);color:var(--violet)}.range-note p{margin:0}.category-row{border-top:1px solid #c8b4d1;border-bottom:1px solid #c8b4d1;margin-bottom:38px;display:flex;overflow-x:auto}.category-row button{white-space:nowrap;color:#786b80;text-align:left;cursor:pointer;background:0 0;border:0;flex:1;padding:16px 18px 16px 0;font-size:11px;font-weight:700;position:relative}.category-row button+button{border-left:1px solid #c8b4d1;padding-left:18px}.category-row button span{font:9px var(--app-font-mono);color:#a091a6;margin-left:8px}.category-row button:after{content:"";background:0 0;height:3px;position:absolute;bottom:-1px;left:0;right:18px}.category-row button.category-active{color:var(--violet)}.category-row button.category-active:after{background:var(--violet)}.product-grid{grid-template-columns:repeat(4,1fr);gap:12px;display:grid}.product-card{background:var(--paper);min-width:0;transition:transform .25s,box-shadow .25s}.product-card:hover{transform:translateY(-5px);box-shadow:0 16px 30px #4d237e1a}.product-card-top{font:9px var(--app-font-mono);color:#76677d;z-index:2;justify-content:space-between;padding:17px 17px 0;display:flex;position:relative}.product-badge{color:var(--violet);text-transform:uppercase;font-size:8px}.product-card .product-visual{height:290px}.product-card-tall{grid-row:span 1}.product-card-info{border-top:1px solid #d9cbd8;justify-content:space-between;align-items:center;padding:16px 16px 18px;display:flex}.product-card-info h3{letter-spacing:-.05em;margin:0 0 3px;font-size:15px}.product-card-info p{color:#83748b;margin:0;font-size:10px}.round-arrow{width:31px;height:31px;color:var(--violet);cursor:pointer;background:0 0;border:1px solid #c9b8ca;border-radius:50%;place-items:center;transition:all .2s;display:grid}.round-arrow:hover{background:var(--violet);color:var(--paper)}.range-footer{color:#82748a;font:9px var(--app-font-mono);justify-content:space-between;align-items:center;padding-top:24px;display:flex}.range-footer .text-link{color:var(--violet)}.technology{grid-template-columns:48% 52%;align-items:center;min-height:720px;padding:120px 0;display:grid}.tech-visual{background:#d9e6d7;place-items:center;height:450px;display:grid;position:relative;overflow:hidden}.tech-visual:before{content:"";border:1px solid #4d237e2b;border-radius:50%;width:390px;height:390px;position:absolute}.tech-disc{background:var(--violet);border-radius:50%;place-items:center;width:255px;height:255px;display:grid;position:relative;box-shadow:0 15px #4d237e21}.tech-ring{border:1px solid #ffffff59;border-radius:50%;position:absolute}.ring-a{inset:24px}.ring-b{inset:54px}.tech-core{width:112px;height:112px;color:var(--paper);text-align:center;border:1px solid #ffffff80;border-radius:50%;place-items:center;display:grid}.tech-core span{font:7px var(--app-font-mono);letter-spacing:.1em;line-height:1.25}.tech-label{font:9px var(--app-font-mono);letter-spacing:.13em;color:var(--violet);position:absolute}.label-top{top:29px;left:30px}.label-bottom{text-align:right;bottom:29px;right:30px}.tech-content{padding:0 7% 0 15%}.tech-content h2{font-size:clamp(48px,5.5vw,69px)}.tech-lede{color:#706479;max-width:390px;margin:31px 0 37px;font-size:14px;line-height:1.7}.tech-points{border-top:1px solid #d2c5d1;max-width:430px;margin-bottom:28px}.tech-points>div{border-bottom:1px solid #d2c5d1;gap:20px;padding:21px 0;display:flex}.point-number{color:var(--violet);font:9px var(--app-font-mono)}.tech-points h3{margin:0 0 5px;font-size:14px}.tech-points p{color:#817488;margin:0;font-size:11px;line-height:1.5}.partner-section{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}.partner-section:before{content:"";border:1px solid #e2cce621;border-radius:50%;width:690px;height:690px;position:absolute;top:-260px;right:-180px;box-shadow:0 0 0 60px #e2cce60a,0 0 0 120px #e2cce608}.partner-inner{grid-template-columns:18% 49% 33%;align-items:center;min-height:610px;display:grid;position:relative}.partner-stamp{width:80px;height:80px;color:var(--coral);font:8px var(--app-font-mono);text-align:center;border:1px solid #f5efe666;border-radius:50%;place-content:center;align-self:start;justify-items:center;margin-top:70px;line-height:1.3;display:grid;transform:rotate(-14deg)}.partner-stamp strong{font-size:11px}.partner-copy{padding:35px 0}.partner-copy .eyebrow{color:var(--coral)}.partner-copy h2{font-size:clamp(50px,6vw,76px)}.partner-copy>p:not(.eyebrow){color:#b9acbf;max-width:360px;margin:32px 0;font-size:13px;line-height:1.7}.button-light{background:var(--coral);color:var(--ink);padding:17px 20px}.button-light:hover{background:#ffae9c}.partner-list{border-left:1px solid #f5efe640;gap:36px;padding-left:46px;display:grid}.partner-list>div{color:var(--coral);gap:15px;display:flex}.partner-list span{color:var(--paper);font-size:13px;line-height:1.2}.partner-list small{color:#a89bae;font:9px var(--app-font-mono)}.partner-list svg{margin-top:1px}.contact-section{grid-template-columns:15% 59% 26%;min-height:555px;padding:116px 0 110px;display:grid;position:relative}.contact-kicker{font:9px var(--app-font-mono);color:var(--violet);text-transform:uppercase;letter-spacing:.1em;flex-direction:column;gap:17px;display:flex}.contact-line{background:#cbbdcd;width:1px;height:78px}.contact-main h2{font-size:clamp(49px,6vw,76px)}.contact-main>p:not(.eyebrow){color:#766a7e;max-width:330px;margin:30px 0;font-size:13px;line-height:1.6}.contact-side{align-self:end;padding-bottom:4px}.contact-side p{font:9px var(--app-font-mono);color:#927f9b;text-transform:uppercase;letter-spacing:.09em;margin:0 0 10px}.contact-side a{color:var(--violet);align-items:center;gap:6px;font-size:13px;font-weight:800;text-decoration:none;display:inline-flex}.contact-location{line-height:1.75;margin-top:42px!important}.contact-location span{color:var(--ink);font:700 12px var(--app-font-sans);text-transform:none;letter-spacing:0}.site-footer{color:var(--paper);background:var(--violet-deep)}.footer-top{justify-content:space-between;min-height:278px;padding-top:62px;display:flex}.footer-tagline{color:#c6b6cf;letter-spacing:-.04em;margin:38px 0 0;font-size:15px;line-height:1.35}.footer-nav{gap:95px;padding-right:9%;display:flex}.footer-nav>div{flex-direction:column;align-items:start;gap:8px;display:flex}.footer-nav p{font:9px var(--app-font-mono);color:var(--coral);text-transform:uppercase;letter-spacing:.1em;margin:0 0 10px}.footer-nav button,.footer-nav a{color:#dfd2e0;align-items:center;gap:5px;font-size:11px;text-decoration:none;display:inline-flex}.footer-nav button:hover,.footer-nav a:hover{color:var(--coral)}.footer-bottom{color:#aa99b4;min-height:62px;font:9px var(--app-font-mono);border-top:1px solid #f5efe638;justify-content:space-between;align-items:center;display:flex}.footer-bottom a{color:var(--coral);align-items:center;gap:4px;text-decoration:none;display:inline-flex}.modal-backdrop{z-index:50;-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);background:#30264b99;place-items:center;padding:20px;animation:.2s fadeIn;display:grid;position:fixed;inset:0}.enquiry-modal{background:var(--paper);width:min(510px,100%);padding:53px 55px 45px;animation:.3s rise;position:relative;box-shadow:0 24px 70px #180d2640}.modal-close{position:absolute;top:18px;right:18px}.icon-button{color:var(--ink);cursor:pointer;background:0 0;border:0;place-items:center;display:grid}.enquiry-modal h2{font-size:52px}.modal-copy{color:#75697d;max-width:345px;margin:22px 0 30px;font-size:13px;line-height:1.6}.enquiry-form{gap:15px;display:grid}.enquiry-form label{color:var(--ink);font:9px var(--app-font-mono);letter-spacing:.05em;text-transform:uppercase;gap:7px;display:grid}.enquiry-form input,.enquiry-form select{color:var(--ink);font:13px var(--app-font-sans);text-transform:none;background:0 0;border:0;border-bottom:1px solid #c8b7c7;outline:0;padding:8px 0}.enquiry-form input:focus,.enquiry-form select:focus{border-color:var(--violet)}.form-submit{width:max-content;margin-top:10px}.modal-footnote{color:#8e8094;font:10px var(--app-font-mono);margin:22px 0 0}.modal-footnote a{color:var(--violet)}.success-state{text-align:center;padding:30px 15px 15px}.success-mark{background:var(--lime);width:48px;height:48px;color:var(--ink);border-radius:50%;place-items:center;margin:0 auto 29px;display:grid}.success-state .eyebrow{margin-bottom:15px}.success-state .button{margin-top:10px}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes rise{0%{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}.reveal{animation:.75s cubic-bezier(.2,.8,.2,1) both reveal}.reveal-1{animation-delay:80ms}.reveal-2{animation-delay:.17s}.reveal-3{animation-delay:.28s}.reveal-4{animation-delay:.39s}@keyframes reveal{0%{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@media(max-width:900px){.section-shell,.header-inner{width:min(100% - 48px,700px)}.main-nav{gap:18px;margin-right:25px}.hero{grid-template-columns:46% 54%;min-height:650px;padding-top:70px}.hero-art{margin-top:5px}.product-visual-large{right:55px}.intro{grid-template-columns:12% 53% 35%}.product-grid{grid-template-columns:repeat(2,1fr)}.technology{grid-template-columns:45% 55%}.tech-content{padding-left:10%}.partner-inner{grid-template-columns:15% 55% 30%}.partner-list{padding-left:25px}.footer-nav{padding-right:0}}@media(max-width:680px){.announcement{padding:0 12px;font-size:8px}.announcement a{margin-left:3px}.site-header{height:72px}.header-inner,.section-shell{width:calc(100% - 38px)}.header-cta,.main-nav{display:none}.menu-toggle{display:block}.main-nav-open{background:var(--paper);flex-direction:column;gap:4px;margin:0;padding:18px 19px 24px;display:flex;position:absolute;top:72px;left:0;right:0;box-shadow:0 10px 20px #30264b17}.main-nav-open button{text-align:left;padding:12px 0;font-size:15px}.nav-mobile-cta{align-items:center;gap:5px;color:var(--violet)!important;display:flex!important}.hero{flex-direction:column;min-height:auto;padding-top:61px;display:flex}.hero-title{font-size:65px}.hero-text{margin:27px 0}.hero-actions{flex-wrap:wrap;gap:20px}.hero-art{width:calc(100% + 38px);height:390px;margin-top:52px;margin-left:-19px}.product-visual-large{width:300px;height:375px;top:2px;right:21%}.product-visual-large .pack-tube{width:125px;height:267px}.product-visual-large .pack-label strong{font-size:29px}.hero-sun{width:290px;height:290px;top:40px;right:4%}.hero-sticker{top:20px;right:17px}.hero-mini-card{bottom:18px;left:19px}.hero-bottom{gap:9px;margin:18px 0 50px;font-size:8px}.hero-bottom span:last-child{display:none}.marquee-band{height:57px}.marquee-track{gap:20px;font-size:16px}.intro{min-height:auto;padding:74px 0 93px;display:block}.section-index{margin-bottom:44px}.intro-heading h2{font-size:54px}.intro-copy{max-width:340px;padding:40px 0 0}.range-section{padding:78px 0 57px}.range-header{margin-bottom:37px;display:block}.range-header h2{font-size:57px}.range-note{width:100%;margin-top:30px}.category-row{margin-left:-19px;margin-right:-19px;padding-left:19px}.category-row button{flex:none;padding-right:16px}.product-grid{gap:9px}.product-card .product-visual{height:205px}.product-card-top{padding:12px 11px 0}.product-card-info{align-items:end;padding:12px 10px}.product-card-info h3{font-size:13px}.product-card-info p{max-width:110px;font-size:8px;line-height:1.3}.round-arrow{width:26px;height:26px}.pack-tube{width:79px;height:165px}.pack-label strong{font-size:17px}.pack-label i{margin-top:7px;font-size:6px}.pack-brush{transform:scale(.77)rotate(13deg)}.pack-floss{transform:scale(.74)}.pack-wash{transform:scale(.76)}.range-footer{padding-top:22px;display:block}.range-footer .text-link{margin-top:18px}.technology{flex-direction:column;padding:82px 0 90px;display:flex}.tech-visual{width:100%;height:320px;margin-bottom:63px}.tech-visual:before{width:275px;height:275px}.tech-disc{width:190px;height:190px}.tech-core{width:84px;height:84px}.tech-core svg{width:19px}.tech-core span{font-size:6px}.tech-content{padding:0}.tech-content h2{font-size:51px}.tech-lede{margin:28px 0 32px}.partner-inner{min-height:auto;padding:80px 0 84px;display:block}.partner-stamp{margin:0 0 57px}.partner-copy h2{font-size:54px}.partner-copy>p:not(.eyebrow){margin:26px 0 30px}.partner-list{border-top:1px solid #f5efe640;border-left:0;gap:23px;margin-top:53px;padding:28px 0 0;display:grid}.contact-section{min-height:auto;padding:80px 0 85px;display:block}.contact-kicker{flex-direction:row;align-items:center;margin-bottom:59px}.contact-line{width:75px;height:1px}.contact-main h2{font-size:54px}.contact-main>p:not(.eyebrow){margin:25px 0 28px}.contact-side{margin-top:61px}.contact-location{margin-top:34px!important}.footer-top{min-height:auto;padding:52px 0 47px;display:block}.footer-tagline{margin-top:29px}.footer-nav{gap:65px;margin-top:53px;display:flex}.footer-bottom{gap:12px;min-height:auto;padding:20px 0 24px;font-size:8px;display:grid}.footer-bottom span:nth-child(2){display:none}.enquiry-modal{padding:45px 25px 30px}.enquiry-modal h2{font-size:45px}}
+
+/* ---------------------------------------------------------------------------
+   Fixes and additions on top of the recovered design system.
+   Everything above this point is the original design system, unchanged.
+   --------------------------------------------------------------------------- */
+
+/* --- Product tile colours -------------------------------------------------
+   The original build shipped `visual-lilac`, `visual-coral`, `visual-sky`,
+   `visual-lemon`, `visual-mint`, `visual-rose` and `visual-violet` as class
+   names with no rules behind them, so seven of the eight tiles rendered on a
+   transparent background. Only `visual-ink` had a definition. These are the
+   tints that were clearly intended, keyed to the brand tokens.
+   -------------------------------------------------------------------------- */
+.visual-lilac  { background: #ddc9e6; }
+.visual-coral  { background: #f6c7b9; }
+.visual-sky    { background: #bfe1e3; }
+.visual-lemon  { background: #e3ecb5; }
+.visual-mint   { background: #c9e3d5; }
+.visual-rose   { background: #eeccd7; }
+.visual-violet { background: #cdb9e7; }
+.visual-ink    { background: #d5d0df; }
+
+/* --- Skip link ------------------------------------------------------------ */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 12px 20px;
+  font: 700 12px var(--app-font-sans);
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 16px;
+  top: 12px;
+}
+
+/* --- Range filter ---------------------------------------------------------
+   Filtering is a progressive enhancement: with JavaScript off every card
+   stays in the DOM and visible, so the full range is always crawlable.
+   -------------------------------------------------------------------------- */
+.product-card[hidden] { display: none; }
+
+.category-row button {
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.category-row button:hover { color: var(--ink); }
+.category-row button.category-active {
+  color: var(--ink);
+  border-bottom-color: var(--violet);
+}
+.category-row button.category-active span { color: var(--violet); }
+
+/* Nav and product CTAs are anchors now, not buttons -€ keep them looking the
+   same as the original while restoring real hrefs. */
+.main-nav a { color: inherit; }
+.main-nav a,
+.footer-nav a,
+.footer-nav button { text-decoration: none; }
+.round-arrow { text-decoration: none; }
+
+/* --- Range footer --------------------------------------------------------- */
+.range-count {
+  font: 10px var(--app-font-mono);
+  color: #76677d;
+  letter-spacing: .04em;
+}
+
+/* --- Motion preferences --------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .marquee-track { animation: none; }
+}
+
+/* Reveal animations only run once JS marks the document ready; without JS the
+   content must not sit at opacity 0. */
+html:not(.js) .reveal { opacity: 1; animation: none; }
+
+/* --- Print ---------------------------------------------------------------- */
+@media print {
+  .announcement, .site-header, .marquee-band, .hero-art, .skip-link { display: none; }
+  .product-card { break-inside: avoid; }
+  body { background: #fff; color: #000; }
+}
+
+/* --- Scroll anchoring -----------------------------------------------------
+   Sections are targeted from the nav while the header is sticky, so each one
+   needs to clear it. */
+html { scroll-behavior: smooth; }
+#top, #thinking, #featured, #whitening, #range, #science, #buy, #contact { scroll-margin-top: 95px; }
+@media (max-width: 900px) {
+  #top, #thinking, #featured, #whitening, #range, #science, #buy, #contact { scroll-margin-top: 84px; }
+}
+
+/* --- Nav links ------------------------------------------------------------
+   The header nav styled only `.main-nav button`; these are anchors now so they
+   carry real hrefs. The footer rule already covers `.footer-nav a`, so leave
+   its colour and sizing alone. */
+.main-nav a {
+  color: inherit;
+  cursor: pointer;
+  padding: 7px 0;
+  font-size: 12px;
+  font-weight: 700;
+}
+.main-nav a:hover { color: var(--violet); }
+.main-nav-open a { text-align: left; padding: 12px 0; font-size: 15px; }
+
+/* --- Reveal on scroll -----------------------------------------------------
+   With JS active, hold each block until the observer marks it revealed. */
+/* Transition rather than a fill-mode animation: a state change, not a one-shot
+   timeline, and it degrades to the end value if animation never runs. */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: none;
+  transition: opacity .75s cubic-bezier(.2, .8, .2, 1),
+              transform .75s cubic-bezier(.2, .8, .2, 1);
+}
+html.js .reveal.is-revealed { opacity: 1; transform: none; }
+html.js .reveal-1 { transition-delay: 80ms; }
+html.js .reveal-2 { transition-delay: .17s; }
+html.js .reveal-3 { transition-delay: .28s; }
+html.js .reveal-4 { transition-delay: .39s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal { opacity: 1; }
+}
+
+/* --- Compositing cost -----------------------------------------------------
+   The original paints 19 blurred ellipses (filter: blur) plus 19 drop-shadowed
+   images beneath a sticky backdrop-filter header and an ever-running marquee, so
+   the compositor never goes idle and scrolling stalls.
+
+   The product shadows do not need a filter — a radial gradient gives the same
+   soft ellipse for no layer cost. The marquee gets its own layer so its
+   animation stops invalidating everything around it.
+   -------------------------------------------------------------------------- */
+.visual-shadow {
+  filter: none;
+  background: radial-gradient(ellipse at 50% 50%,
+              rgba(48, 38, 75, .26) 0%,
+              rgba(48, 38, 75, .14) 45%,
+              rgba(48, 38, 75, 0) 72%);
+}
+
+.marquee-track {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Card repaints stay inside the card. */
+.product-card { contain: paint; }
+
+/* The frosted header only needs its blur once it is actually over content. */
+.site-header:not(.site-header-scrolled) {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* Buttons rendered as anchors must not pick up the default link underline. */
+.button, .header-cta, .skip-link { text-decoration: none; }
+/* The mobile "Get in touch" link is forced visible with !important, so on
+   desktop it sat next to the "Partner with us" button saying the same thing.
+   It belongs to the mobile nav only. */
+@media (min-width: 901px) {
+  .nav-mobile-cta { display: none !important; }
+}
+/* Footer link columns shrink-wrap to their content, so a label plus its
+   trailing arrow wrapped onto a second line. Keep each link on one line and
+   let the column size to the full link. */
+.footer-nav > div { display: flex; flex-direction: column; align-items: flex-start; }
+.site-footer .footer-nav a { white-space: nowrap; }
+.footer-nav a svg { flex: none; }
+/* --- Hero photograph ------------------------------------------------------
+   The hero panel now carries a lifestyle shot rather than a pack render.
+   The source is 1400x781 (1.79:1) and the panel is nearer 1.27:1, so `cover`
+   crops the sides; centred keeps both the subject and the pack in frame.
+   -------------------------------------------------------------------------- */
+.hero-photo {
+  margin: 0;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Lift the overlays clear of the photo. */
+.hero-art .hero-sticker,
+.hero-art .hero-mini-card { z-index: 3; }
+
+/* The sticker sits over a bright window in the shot; a soft shadow keeps its
+   edge defined. */
+.hero-art .hero-sticker { box-shadow: 0 6px 18px rgba(48, 38, 75, .28); }
+.hero-art .hero-mini-card { box-shadow: 0 8px 22px rgba(48, 38, 75, .22); }
+/* ===========================================================================
+   Consumer sections: featured products, whitening story, where to buy.
+   =========================================================================== */
+
+/* --- Featured products ---------------------------------------------------- */
+.featured { padding: 112px 0 90px; }
+
+.featured-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 40px;
+  margin-bottom: 52px;
+}
+.featured-head h2 { font-size: clamp(50px, 6.4vw, 78px); }
+.featured-note {
+  color: #6d5f77;
+  max-width: 300px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.feature-card {
+  display: grid;
+  grid-template-columns: 42% 58%;
+  background: #fff;
+  min-width: 0;
+  transition: transform .25s, box-shadow .25s;
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 34px rgba(77, 35, 126, .12);
+}
+
+.feature-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 26px 16px;
+  min-height: 260px;
+}
+.feature-media img {
+  width: 100%;
+  height: auto;
+  max-height: 230px;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 12px rgba(48, 38, 75, .16));
+}
+
+.feature-body { padding: 30px 30px 28px; }
+.feature-kicker {
+  font: 9px var(--app-font-mono);
+  color: var(--violet);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin: 0 0 12px;
+}
+.feature-body h3 {
+  font-size: 21px;
+  letter-spacing: -.05em;
+  line-height: 1.1;
+  margin: 0 0 12px;
+}
+.feature-lede {
+  color: #706479;
+  font-size: 12.5px;
+  line-height: 1.65;
+  margin: 0 0 18px;
+}
+
+.feature-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 20px;
+  padding: 0;
+}
+.feature-chips li {
+  font: 9px var(--app-font-mono);
+  color: #6d5f77;
+  letter-spacing: .04em;
+  border: 1px solid #d9cbd8;
+  border-radius: 99px;
+  padding: 5px 10px;
+}
+
+/* --- Whitening story ------------------------------------------------------ */
+.whitening-story { background: var(--lavender); padding: 104px 0; }
+
+.whitening-inner {
+  display: grid;
+  grid-template-columns: 46% 54%;
+  align-items: center;
+  gap: 60px;
+}
+.whitening-figure { margin: 0; }
+.whitening-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: 0 22px 44px rgba(77, 35, 126, .16);
+}
+.whitening-copy h2 { font-size: clamp(48px, 5.6vw, 72px); }
+.whitening-copy > p:not(.eyebrow) {
+  color: #6d5f77;
+  max-width: 400px;
+  margin: 28px 0 34px;
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+.whitening-points {
+  border-top: 1px solid #c8b4d1;
+  max-width: 440px;
+  margin-bottom: 32px;
+}
+.whitening-points > div {
+  border-bottom: 1px solid #c8b4d1;
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+}
+.whitening-points h3 { margin: 0 0 5px; font-size: 14px; letter-spacing: -.03em; }
+.whitening-points p { color: #7a6d82; margin: 0; font-size: 11.5px; line-height: 1.55; }
+
+/* --- Odds and ends -------------------------------------------------------- */
+/* The hero badge now carries a word rather than a number, so it needs smaller,
+   tighter type than the numeric sticker it replaced. */
+.hero-sticker-word { font-size: 13px; letter-spacing: -.03em; }
+.hero-sticker-word span { font-size: 8px; letter-spacing: .06em; }
+
+.hero-mini-card { text-decoration: none; transition: transform .2s; }
+.hero-mini-card:hover { transform: translateY(-3px); }
+
+.contact-trade {
+  color: #8d7f95 !important;
+  font: 10px var(--app-font-mono) !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  margin-top: 26px !important;
+  line-height: 1.6;
+}
+.contact-trade a { color: var(--violet); text-decoration: none; border-bottom: 1px solid #c2aecb; }
+
+@media (max-width: 900px) {
+  .featured-grid { grid-template-columns: 1fr; }
+  .whitening-inner { grid-template-columns: 1fr; gap: 44px; }
+  
+}
+
+@media (max-width: 680px) {
+  .featured { padding: 78px 0 60px; }
+  .featured-head { display: block; margin-bottom: 34px; }
+  .featured-head h2 { font-size: 54px; }
+  .featured-note { margin-top: 24px; max-width: 100%; }
+  .feature-card { grid-template-columns: 1fr; }
+  .feature-media { min-height: 210px; padding: 22px 14px; }
+  .feature-body { padding: 24px 20px 26px; }
+
+  .whitening-story { padding: 74px 0; }
+  .whitening-copy h2 { font-size: 50px; }
+
+
+}
+/* --- Range call-to-action band (homepage) --------------------------------- */
+.range-cta { background: var(--lavender); padding: 96px 0; }
+.range-cta-inner {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  align-items: center;
+  gap: 60px;
+}
+.range-cta-copy h2 { font-size: clamp(46px, 5.4vw, 70px); }
+.range-cta-copy > p:not(.eyebrow) {
+  color: #6d5f77;
+  max-width: 420px;
+  margin: 26px 0 34px;
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+.range-cta-figure { margin: 0 0 0 auto; max-width: 400px; }
+.range-cta-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: 0 22px 44px rgba(77, 35, 126, .16);
+}
+/* --- Subpage header (range.html) ------------------------------------------ */
+.page-head { padding: 84px 0 56px; }
+.page-head h1 {
+  font: 800 clamp(50px, 6.4vw, 86px)/.92 var(--app-font-sans);
+  letter-spacing: -.09em;
+  margin: 0 0 26px;
+}
+.page-head > p {
+  color: #6d5f77;
+  max-width: 430px;
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+.crumb {
+  font: 9px var(--app-font-mono);
+  color: #8a7b91;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  display: flex;
+  gap: 9px;
+  margin-bottom: 30px;
+}
+.crumb a { color: var(--violet); text-decoration: none; }
+.crumb a:hover { border-bottom: 1px solid var(--violet); }
+.crumb [aria-current] { color: #8a7b91; }
+
+/* On the products page the grid is the whole point, so it loses the tinted
+   band it had as a homepage section. */
+.page-head + .range-section { background: transparent; padding-top: 0; }
+
+@media (max-width: 680px) {
+  .range-cta { padding: 74px 0; }
+  .range-cta-copy h2 { font-size: 48px; }
+  .page-head { padding: 56px 0 38px; }
+  .page-head h1 { font-size: 52px; }
+}
+
+@media (max-width: 900px) {
+  .range-cta-inner { grid-template-columns: 1fr; gap: 40px; }
+  .range-cta-figure { max-width: 460px; }
+}
+/* --- Brand mark ------------------------------------------------------------
+   Larger than the recovered design's 137px; the header has the room and the
+   wordmark was reading small against the nav. */
+.brand-mark img { width: 176px; }
+@media (max-width: 680px) {
+  .brand-mark img { width: 142px; }
+}
+/* ===========================================================================
+   Rhythm pass. Successive edits had left every section on its own spacing and
+   heading size; these two blocks put them back on one scale.
+   =========================================================================== */
+
+/* --- One heading size for every section ----------------------------------
+   There were seven competing rules (82 / 80 / 78 / 76 / 72 / 70 / 69px), so
+   headings of identical rank rendered at visibly different sizes down the page. */
+.intro-heading h2,
+.featured-head h2,
+.whitening-copy h2,
+.range-cta-copy h2,
+.tech-content h2,
+.contact-main h2,
+.range-header h2,
+.partner-copy h2 {
+  font-size: clamp(46px, 5.6vw, 74px);
+}
+
+/* --- One vertical rhythm --------------------------------------------------
+   Section padding ran 96 / 104 / 112 / 116 / 120 / 125px. One value reads as
+   deliberate; six read as drift. */
+.featured,
+.whitening-story,
+.range-cta,
+.technology,
+.contact-section { padding-top: 112px; padding-bottom: 112px; }
+.intro { padding-top: 112px; }
+
+@media (max-width: 680px) {
+  .intro-heading h2,
+  .featured-head h2,
+  .whitening-copy h2,
+  .range-cta-copy h2,
+  .tech-content h2,
+  .contact-main h2,
+  .range-header h2,
+  .partner-copy h2 {
+    font-size: 46px;
+  }
+
+  .featured,
+  .whitening-story,
+  .range-cta,
+  .technology,
+  .contact-section { padding-top: 78px; padding-bottom: 78px; }
+  .intro { padding-top: 78px; }
+}
+/* The intro grid was authored as three columns: a section-index gutter, the
+   heading, then the copy. The index is gone (its number moved into the eyebrow,
+   matching every other section), so the grid is two columns now - without this
+   the heading inherits the narrow gutter column and wraps a word per line. */
+.intro { grid-template-columns: 57% 43%; }
+@media (max-width: 900px) {
+  .intro { grid-template-columns: 55% 45%; }
+}
+/* Cards in a row are equal height, but a title that wraps to two lines pushed
+   its card's CTA ~23px below its neighbour's. Pin the CTA to the bottom so the
+   row reads on one line. */
+.feature-body { display: flex; flex-direction: column; }
+.feature-body .feature-lede { margin-bottom: 18px; }
+.feature-body .feature-chips { margin-bottom: 22px; }
+.feature-body .text-link { margin-top: auto; align-self: flex-start; }
+/* The recovered sections carried min-heights that set their own rhythm. Now
+   that padding does that job, the two stack and leave large voids, so the
+   min-heights go. */
+.technology, .contact-section { min-height: auto; }
+
+/* 15% of left padding left the heading column too narrow for the unified type
+   size - "Gentle by nature." was breaking across two lines. */
+.tech-content { padding: 0 4% 0 9%; }
+@media (max-width: 680px) {
+  /* The recovered rule left this at 93px while every other section moved to 78. */
+  .intro { padding-bottom: 78px; }
+}
