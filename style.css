@@ -594,3 +594,12 @@ html.js .reveal-4 { transition-delay: .39s; }
 .whitening-story .button-primary:hover { background: #4D237E; }
 
 /* .visual-violet is the serum tile and is intentionally left purple. */
+/* The range band's figure is a landscape frame now, not a portrait one. A
+   400px column would render it only ~270px tall beside a ~280px copy block,
+   so the column widens to give the image presence. */
+.range-cta-inner { grid-template-columns: 1fr 600px; }
+.range-cta-figure { max-width: 600px; }
+@media (max-width: 900px) {
+  .range-cta-inner { grid-template-columns: 1fr; }
+  .range-cta-figure { max-width: 100%; }
+}
