@@ -156,4 +156,108 @@
   addEventListener('load', function () {
     reveals.forEach(function (el) { if (inView(el)) reveal(el); });
   });
+
+  /* --- Enquiry modal ------------------------------------------------------
+     There is no server behind this site, so the form cannot post anywhere. It
+     collects the details, then hands them to the visitor's mail client as a
+     filled-in message to mail@pharmascient.com. Every trigger keeps its own
+     mailto: href, so with this file absent the links still reach the inbox -
+     just without the fields.
+     ------------------------------------------------------------------------ */
+  var modal = document.getElementById('enquiry');
+  var triggers = Array.prototype.slice.call(document.querySelectorAll('[data-enquiry]'));
+
+  if (modal && triggers.length) {
+    var form = modal.querySelector('.enquiry-form');
+    var panel = modal.querySelector('[data-enquiry-form]');
+    var success = modal.querySelector('[data-enquiry-success]');
+    var errorNote = modal.querySelector('[data-form-error]');
+    var topic = form.elements.topic;
+    var lastFocused = null;
+
+    var openModal = function (preset) {
+      lastFocused = document.activeElement;
+      panel.hidden = false;
+      success.hidden = true;
+      errorNote.hidden = true;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      if (preset) {
+        Array.prototype.forEach.call(topic.options, function (o, i) {
+          if (o.text === preset) topic.selectedIndex = i;
+        });
+      }
+      form.elements.name.focus();
+    };
+
+    var closeModal = function () {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    };
+
+    triggers.forEach(function (t) {
+      t.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal(t.dataset.enquiry);
+      });
+    });
+
+    modal.addEventListener('click', function (e) {
+      // The backdrop is the modal element itself; clicks inside the panel bubble
+      // up from a descendant, so only a direct hit should close it.
+      if (e.target === modal || e.target.closest('.modal-close, [data-enquiry-close]')) closeModal();
+    });
+
+    addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+
+    // Keep tabbing inside the dialog while it is open.
+    modal.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var focusable = modal.querySelectorAll('button, input, select, textarea, a[href]');
+      var visible = Array.prototype.filter.call(focusable, function (el) {
+        return el.offsetParent !== null;
+      });
+      if (!visible.length) return;
+      var first = visible[0], last = visible[visible.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = form.elements;
+      var name = f.name.value.trim();
+      var email = f.email.value.trim();
+      var query = f.query.value.trim();
+
+      if (!name || !email || !query) {
+        errorNote.hidden = false;
+        (!name ? f.name : !email ? f.email : f.query).focus();
+        return;
+      }
+      errorNote.hidden = true;
+
+      var body = [
+        'Name: ' + name,
+        'Email: ' + email,
+        'Phone: ' + (f.phone.value.trim() || '—'),
+        'Enquiry type: ' + topic.value,
+        '',
+        query,
+        '',
+        '— sent from clairoral.com'
+      ].join('\r\n');
+
+      location.href = 'mailto:mail@pharmascient.com'
+        + '?subject=' + encodeURIComponent('Clair Oral Care — ' + topic.value)
+        + '&body=' + encodeURIComponent(body);
+
+      panel.hidden = true;
+      success.hidden = false;
+      form.reset();
+    });
+  }
 })();

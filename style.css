@@ -721,6 +721,57 @@ html.js .reveal-4 { transition-delay: .39s; }
 /* The anchored card would otherwise sit under the sticky header. */
 .product-card { scroll-margin-top: 105px; }
 
+/* ===========================================================================
+   Enquiry modal.
+   The design system styled the dialog, the form and the success state but the
+   markup was missing, so these are only the gaps it left.
+   =========================================================================== */
+
+/* .modal-backdrop sets display:grid, which outranks the UA rule for [hidden].
+   Without this the dialog is open on every page load. */
+.modal-backdrop[hidden] { display: none; }
+
+/* The system styled input and select but never a textarea. */
+.enquiry-form textarea {
+  color: var(--ink);
+  font: 13px var(--app-font-sans);
+  text-transform: none;
+  background: 0 0;
+  border: 0;
+  border-bottom: 1px solid #b7c6c8;
+  outline: 0;
+  padding: 8px 0;
+  resize: vertical;
+}
+.enquiry-form textarea:focus { border-color: var(--violet); }
+.enquiry-form select { appearance: none; border-radius: 0; }
+.form-error {
+  color: #a3402f;
+  font: 10px/1.5 var(--app-font-mono);
+  margin: 0;
+}
+.enquiry-modal .eyebrow { margin-bottom: 14px; }
+.enquiry-modal h2 {
+  line-height: .95;
+  /* The -.09em brand tracking closes the gap in "Ask us" at this size, and it
+     reads as one word. Buy the space back without loosening the letters. */
+  word-spacing: .12em;
+}
+.success-state .modal-copy { margin-left: auto; margin-right: auto; }
+
+/* The dialog is taller than a laptop viewport once the browser chrome is off.
+   A centred grid item with nowhere to go gets clipped at the top and cannot be
+   scrolled back to, so the backdrop scrolls and centring gives way when it must. */
+.modal-backdrop {
+  align-items: safe center;
+  overflow-y: auto;
+}
+@media (max-height: 760px) {
+  .enquiry-modal { padding-top: 36px; padding-bottom: 32px; }
+  .enquiry-modal h2 { font-size: 42px; }
+  .modal-copy { margin: 18px 0 24px; }
+}
+
 @media (max-width: 900px) {
   /* Six nav items and the button no longer fit the 700px shell here. The nav is
      the more useful of the two; "Ask us a question" is still in the contact
