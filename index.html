@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- ?v bumped whenever style.css or script.js changes, so browsers holding a
      cached copy pick up the new version. -->
-<link rel="stylesheet" href="style.css?v=26">
+<link rel="stylesheet" href="style.css?v=28">
 
 <!-- Set before first paint so scroll-reveal blocks never flash in and out. -->
 <script>document.documentElement.classList.add('js');</script>
@@ -92,10 +92,71 @@
     <a href="#top" class="brand-mark"><img src="official/logo-oralcare-teal.png" alt="Clair Oral Care" width="136" height="23"></a>
     <nav class="main-nav" aria-label="Main navigation">
       <a href="#featured">Bestsellers</a>
-      <a href="#whitening">Whitening</a>
-      <a href="range.html">All products</a>
+
+      <div class="nav-item">
+        <a href="range.html#whitening">Whitening</a>
+        <div class="nav-ribbon">
+          <div class="nav-ribbon-inner section-shell">
+            <p class="nav-ribbon-label">Whitening <span>02 products</span></p>
+            <ul class="nav-ribbon-list">
+              <li><a href="range.html#cr310">Whitening Tooth Serum<span>CR / 310</span></a></li>
+              <li><a href="range.html#cr311">Whitening Strips<span>CR / 311</span></a></li>
+            </ul>
+            <a class="nav-ribbon-all" href="range.html#whitening">See all whitening <svg width="13" height="13" aria-hidden="true"><use href="#i-ur"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <a href="range.html#devices">Devices</a>
+        <div class="nav-ribbon">
+          <div class="nav-ribbon-inner section-shell">
+            <p class="nav-ribbon-label">Devices <span>03 products</span></p>
+            <ul class="nav-ribbon-list">
+              <li><a href="range.html#cr409">SoniClair 40000 Sonic Toothbrush<span>CR / 409</span></a></li>
+              <li><a href="range.html#brush-heads">Replacement Brush Heads<span>Model 20000</span></a></li>
+              <li><a href="range.html#cr503">Cordless Water Flosser<span>CR / 503</span></a></li>
+            </ul>
+            <a class="nav-ribbon-all" href="range.html#devices">See all devices <svg width="13" height="13" aria-hidden="true"><use href="#i-ur"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <a href="range.html#toothpaste">Toothpaste</a>
+        <div class="nav-ribbon">
+          <div class="nav-ribbon-inner section-shell">
+            <p class="nav-ribbon-label">Toothpaste <span>02 products</span></p>
+            <ul class="nav-ribbon-list">
+              <li><a href="range.html#cr320">SensiClair Enamel Care + Whitening<span>CR / 320</span></a></li>
+              <li><a href="range.html#cr325">SensiClair F Fluoride<span>CR / 325</span></a></li>
+            </ul>
+            <a class="nav-ribbon-all" href="range.html#toothpaste">See all toothpaste <svg width="13" height="13" aria-hidden="true"><use href="#i-ur"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <a href="range.html">All products</a>
+        <div class="nav-ribbon">
+          <div class="nav-ribbon-inner section-shell">
+            <p class="nav-ribbon-label">The full range <span>19 products</span></p>
+            <ul class="nav-ribbon-list nav-ribbon-list-wide">
+              <li><a href="range.html#devices">Devices<span>03</span></a></li>
+              <li><a href="range.html#whitening">Whitening<span>02</span></a></li>
+              <li><a href="range.html#toothpaste">Toothpaste<span>02</span></a></li>
+              <li><a href="range.html#brushes">Toothbrushes<span>04</span></a></li>
+              <li><a href="range.html#floss">Floss &amp; interdental<span>03</span></a></li>
+              <li><a href="range.html#tongue">Tongue care<span>03</span></a></li>
+              <li><a href="range.html#ortho">Orthodontic<span>02</span></a></li>
+            </ul>
+            <a class="nav-ribbon-all" href="range.html">See the whole range <svg width="13" height="13" aria-hidden="true"><use href="#i-ur"/></svg></a>
+          </div>
+        </div>
+      </div>
+
       <a href="#science">Why it works</a>
-      <a class="nav-mobile-cta" href="range.html">All products <svg width="15" height="15" aria-hidden="true"><use href="#i-ur"/></svg></a>
+      <a class="nav-mobile-cta" href="range.html">All products <svg width="13" height="13" aria-hidden="true"><use href="#i-ur"/></svg></a>
     </nav>
     <a class="header-cta" href="range.html">Explore the range <svg width="15" height="15" aria-hidden="true"><use href="#i-ur"/></svg></a>
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
@@ -137,16 +198,40 @@
   </div>
 </section>
 
-<section class="marquee-band" aria-label="Clair principles">
+<section class="marquee-band" aria-label="Clair product range">
+  <!-- Four identical passes of the range. The keyframe shifts the track by a
+       quarter of its width, which is exactly one pass, so the loop has no
+       seam - and one pass stays wider than the viewport, so no gap opens at
+       the end of the run. -->
   <div class="marquee-track">
-    <span>Peroxide-free brightening</span><b aria-hidden="true">+</b>
-    <span>Gentle on sensitivity</span><b aria-hidden="true">+</b>
-    <span>Nano-hydroxyapatite</span><b aria-hidden="true">+</b>
-    <span>Peroxide-free brightening</span><b aria-hidden="true">+</b>
-    <span>Gentle on sensitivity</span><b aria-hidden="true">+</b>
-    <span>Nano-hydroxyapatite</span><b aria-hidden="true">+</b>
-    <span>Peroxide-free brightening</span><b aria-hidden="true">+</b>
-    <span>Gentle on sensitivity</span><b aria-hidden="true">+</b>
+    <span>Devices</span><b aria-hidden="true">+</b>
+    <span>Whitening</span><b aria-hidden="true">+</b>
+    <span>Toothpaste</span><b aria-hidden="true">+</b>
+    <span>Toothbrushes</span><b aria-hidden="true">+</b>
+    <span>Floss &amp; interdental</span><b aria-hidden="true">+</b>
+    <span>Tongue care</span><b aria-hidden="true">+</b>
+    <span>Orthodontic</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Devices</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Whitening</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Toothpaste</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Toothbrushes</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Floss &amp; interdental</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Tongue care</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Orthodontic</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Devices</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Whitening</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Toothpaste</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Toothbrushes</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Floss &amp; interdental</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Tongue care</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Orthodontic</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Devices</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Whitening</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Toothpaste</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Toothbrushes</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Floss &amp; interdental</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Tongue care</span><b aria-hidden="true">+</b>
+    <span aria-hidden="true">Orthodontic</span><b aria-hidden="true">+</b>
   </div>
 </section>
 
@@ -375,6 +460,6 @@
 
 </div>
 
-<script src="script.js?v=26"></script>
+<script src="script.js?v=28"></script>
 </body>
 </html>

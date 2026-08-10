@@ -23,7 +23,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="style.css?v=26">
+<link rel="stylesheet" href="style.css?v=28">
 
 <script>document.documentElement.classList.add('js');</script>
 
@@ -60,10 +60,71 @@
     <a href="index.html" class="brand-mark"><img src="official/logo-oralcare-teal.png" alt="Clair Oral Care" width="136" height="23"></a>
     <nav class="main-nav" aria-label="Main navigation">
       <a href="index.html#featured">Bestsellers</a>
-      <a href="index.html#whitening">Whitening</a>
-      <a href="range.html" aria-current="page">All products</a>
+
+      <div class="nav-item">
+        <a href="#whitening">Whitening</a>
+        <div class="nav-ribbon">
+          <div class="nav-ribbon-inner section-shell">
+            <p class="nav-ribbon-label">Whitening <span>02 products</span></p>
+            <ul class="nav-ribbon-list">
+              <li><a href="#cr310">Whitening Tooth Serum<span>CR / 310</span></a></li>
+              <li><a href="#cr311">Whitening Strips<span>CR / 311</span></a></li>
+            </ul>
+            <a class="nav-ribbon-all" href="#whitening">See all whitening <svg width="13" height="13" aria-hidden="true"><use href="#i-ur"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <a href="#devices">Devices</a>
+        <div class="nav-ribbon">
+          <div class="nav-ribbon-inner section-shell">
+            <p class="nav-ribbon-label">Devices <span>03 products</span></p>
+            <ul class="nav-ribbon-list">
+              <li><a href="#cr409">SoniClair 40000 Sonic Toothbrush<span>CR / 409</span></a></li>
+              <li><a href="#brush-heads">Replacement Brush Heads<span>Model 20000</span></a></li>
+              <li><a href="#cr503">Cordless Water Flosser<span>CR / 503</span></a></li>
+            </ul>
+            <a class="nav-ribbon-all" href="#devices">See all devices <svg width="13" height="13" aria-hidden="true"><use href="#i-ur"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <a href="#toothpaste">Toothpaste</a>
+        <div class="nav-ribbon">
+          <div class="nav-ribbon-inner section-shell">
+            <p class="nav-ribbon-label">Toothpaste <span>02 products</span></p>
+            <ul class="nav-ribbon-list">
+              <li><a href="#cr320">SensiClair Enamel Care + Whitening<span>CR / 320</span></a></li>
+              <li><a href="#cr325">SensiClair F Fluoride<span>CR / 325</span></a></li>
+            </ul>
+            <a class="nav-ribbon-all" href="#toothpaste">See all toothpaste <svg width="13" height="13" aria-hidden="true"><use href="#i-ur"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <a href="range.html" aria-current="page">All products</a>
+        <div class="nav-ribbon">
+          <div class="nav-ribbon-inner section-shell">
+            <p class="nav-ribbon-label">The full range <span>19 products</span></p>
+            <ul class="nav-ribbon-list nav-ribbon-list-wide">
+              <li><a href="#devices">Devices<span>03</span></a></li>
+              <li><a href="#whitening">Whitening<span>02</span></a></li>
+              <li><a href="#toothpaste">Toothpaste<span>02</span></a></li>
+              <li><a href="#brushes">Toothbrushes<span>04</span></a></li>
+              <li><a href="#floss">Floss &amp; interdental<span>03</span></a></li>
+              <li><a href="#tongue">Tongue care<span>03</span></a></li>
+              <li><a href="#ortho">Orthodontic<span>02</span></a></li>
+            </ul>
+            <a class="nav-ribbon-all" href="range.html">See the whole range <svg width="13" height="13" aria-hidden="true"><use href="#i-ur"/></svg></a>
+          </div>
+        </div>
+      </div>
+
       <a href="index.html#science">Why it works</a>
-      <a class="nav-mobile-cta" href="index.html#contact">Ask us <svg width="15" height="15" aria-hidden="true"><use href="#i-ur"/></svg></a>
+      <a class="nav-mobile-cta" href="index.html#contact">Ask us <svg width="13" height="13" aria-hidden="true"><use href="#i-ur"/></svg></a>
     </nav>
     <a class="header-cta" href="index.html#contact">Ask us a question <svg width="15" height="15" aria-hidden="true"><use href="#i-ur"/></svg></a>
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
@@ -99,7 +160,7 @@
 
     <div class="product-grid">
 
-      <article class="product-card" data-category="devices">
+      <article class="product-card" id="cr409" data-category="devices">
         <div class="product-card-top"><span>CR / 409</span><span class="product-badge">Bestseller</span></div>
         <div class="product-visual visual-ink">
           <div class="visual-shadow"></div>
@@ -111,7 +172,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="devices">
+      <article class="product-card" id="brush-heads" data-category="devices">
         <div class="product-card-top"><span>Model 20000</span></div>
         <div class="product-visual visual-ink">
           <div class="visual-shadow"></div>
@@ -123,7 +184,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="devices">
+      <article class="product-card" id="cr503" data-category="devices">
         <div class="product-card-top"><span>CR / 503</span><span class="product-badge">Bestseller</span></div>
         <div class="product-visual visual-mint">
           <div class="visual-shadow"></div>
@@ -135,7 +196,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="whitening">
+      <article class="product-card" id="cr310" data-category="whitening">
         <div class="product-card-top"><span>CR / 310</span></div>
         <div class="product-visual visual-violet">
           <div class="visual-shadow"></div>
@@ -147,7 +208,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="whitening">
+      <article class="product-card" id="cr311" data-category="whitening">
         <div class="product-card-top"><span>CR / 311</span><span class="product-badge">Core range</span></div>
         <div class="product-visual visual-coral">
           <div class="visual-shadow"></div>
@@ -159,7 +220,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="toothpaste">
+      <article class="product-card" id="cr320" data-category="toothpaste">
         <div class="product-card-top"><span>CR / 320</span><span class="product-badge">Core range</span></div>
         <div class="product-visual visual-lilac">
           <div class="visual-shadow"></div>
@@ -171,7 +232,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="toothpaste">
+      <article class="product-card" id="cr325" data-category="toothpaste">
         <div class="product-card-top"><span>CR / 325</span></div>
         <div class="product-visual visual-sky">
           <div class="visual-shadow"></div>
@@ -184,7 +245,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="brushes">
+      <article class="product-card" id="cr180" data-category="brushes">
         <div class="product-card-top"><span>CR / 180</span></div>
         <div class="product-visual visual-rose">
           <div class="visual-shadow"></div>
@@ -196,7 +257,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="brushes">
+      <article class="product-card" id="cr150" data-category="brushes">
         <div class="product-card-top"><span>CR / 150</span></div>
         <div class="product-visual visual-lemon">
           <div class="visual-shadow"></div>
@@ -208,7 +269,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="brushes">
+      <article class="product-card" id="cr120" data-category="brushes">
         <div class="product-card-top"><span>CR / 120</span></div>
         <div class="product-visual visual-lilac">
           <div class="visual-shadow"></div>
@@ -220,7 +281,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="brushes">
+      <article class="product-card" id="cr110" data-category="brushes">
         <div class="product-card-top"><span>CR / 110</span></div>
         <div class="product-visual visual-rose">
           <div class="visual-shadow"></div>
@@ -232,7 +293,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="floss">
+      <article class="product-card" id="cr228" data-category="floss">
         <div class="product-card-top"><span>CR / 228</span></div>
         <div class="product-visual visual-lemon">
           <div class="visual-shadow"></div>
@@ -244,7 +305,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="floss">
+      <article class="product-card" id="cr090" data-category="floss">
         <div class="product-card-top"><span>CR / 090</span></div>
         <div class="product-visual visual-mint">
           <div class="visual-shadow"></div>
@@ -256,7 +317,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="floss">
+      <article class="product-card" id="cr235" data-category="floss">
         <div class="product-card-top"><span>CR / 235</span></div>
         <div class="product-visual visual-sky">
           <div class="visual-shadow"></div>
@@ -268,7 +329,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="tongue">
+      <article class="product-card" id="cr220" data-category="tongue">
         <div class="product-card-top"><span>CR / 220</span></div>
         <div class="product-visual visual-coral">
           <div class="visual-shadow"></div>
@@ -280,7 +341,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="tongue">
+      <article class="product-card" id="cr210" data-category="tongue">
         <div class="product-card-top"><span>CR / 210</span></div>
         <div class="product-visual visual-ink">
           <div class="visual-shadow"></div>
@@ -292,7 +353,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="tongue">
+      <article class="product-card" id="cr242" data-category="tongue">
         <div class="product-card-top"><span>CR / 242</span></div>
         <div class="product-visual visual-mint">
           <div class="visual-shadow"></div>
@@ -304,7 +365,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="ortho">
+      <article class="product-card" id="cr124" data-category="ortho">
         <div class="product-card-top"><span>CR / 124</span></div>
         <div class="product-visual visual-sky">
           <div class="visual-shadow"></div>
@@ -316,7 +377,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-category="ortho">
+      <article class="product-card" id="cr259" data-category="ortho">
         <div class="product-card-top"><span>CR / 259</span></div>
         <div class="product-visual visual-lemon">
           <div class="visual-shadow"></div>
@@ -373,6 +434,6 @@
 
 </div>
 
-<script src="script.js?v=26"></script>
+<script src="script.js?v=28"></script>
 </body>
 </html>

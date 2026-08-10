@@ -225,8 +225,9 @@ html.js .reveal-4 { transition-delay: .39s; }
 .button, .header-cta, .skip-link { text-decoration: none; }
 /* The mobile "Get in touch" link is forced visible with !important, so on
    desktop it sat next to the "Partner with us" button saying the same thing.
-   It belongs to the mobile nav only. */
-@media (min-width: 901px) {
+   It belongs to the mobile nav, which starts at 680 - not at 900, where this
+   rule used to draw the line and left the link showing on tablets. */
+@media (min-width: 681px) {
   .nav-mobile-cta { display: none !important; }
 }
 /* Footer link columns shrink-wrap to their content, so a label plus its
@@ -618,10 +619,136 @@ html.js .reveal-4 { transition-delay: .39s; }
    is set by a wider shell, so it is left alone.) */
 .brand-mark-light img { width: 106px; }
 
+/* The marquee shifts by 25% of the track, which has to equal one of its four
+   passes. It does not quite: there is a gap between every pair of items but
+   none after the last, so the track is one gap short of four whole passes and
+   the loop jumped ~9px on every restart. A trailing pad of one gap squares it. */
+.marquee-track { padding-right: 34px; }
+@media (max-width: 680px) {
+  .marquee-track { padding-right: 20px; }
+}
+
 /* The header ran on a 1360px shell while the content runs on 1220px, so above
    ~1316px the logo sat 62px outside the column everything below it lines up to.
    One shell width for both puts the mark on the content margin. */
 .header-inner { width: min(1220px, 100% - 96px); }
+
+/* ===========================================================================
+   Category ribbon.
+
+   Whitening, Devices, Toothpaste and All products drop a full-width band under
+   the header listing what is inside them. No JavaScript: the band is shown by
+   :hover for pointers and :focus-within for keyboards, which means it also
+   works before script.js has run.
+   =========================================================================== */
+.main-nav {
+  /* The nav has to fill the header's height, so the item a pointer is on stays
+     hovered all the way down to the band. Without this the nav is only as tall
+     as its text and the band closes in the gap. */
+  align-self: stretch;
+  align-items: center;
+}
+.nav-item {
+  /* Deliberately not positioned: the band resolves against .site-header, which
+     is sticky, so it spans the viewport rather than the item. */
+  align-self: stretch;
+  align-items: center;
+  display: flex;
+}
+.nav-ribbon {
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+  background: var(--paper);
+  border-top: 1px solid #cbdde0;
+  transition: opacity .18s, visibility .18s;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  box-shadow: 0 18px 30px #26474b1f;
+}
+.nav-item:hover .nav-ribbon,
+.nav-item:focus-within .nav-ribbon {
+  visibility: visible;
+  opacity: 1;
+}
+.nav-ribbon-inner { padding: 26px 0 30px; }
+.nav-ribbon-label {
+  font: 500 10px var(--app-font-mono);
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin: 0 0 18px;
+}
+.nav-ribbon-label span { color: #91a4a6; margin-left: 8px; }
+.nav-ribbon-list {
+  flex-wrap: wrap;
+  gap: 10px 44px;
+  margin: 0 0 22px;
+  padding: 0;
+  display: flex;
+}
+.nav-ribbon-list a {
+  color: var(--ink);
+  align-items: baseline;
+  gap: 9px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 700;
+  display: inline-flex;
+}
+.nav-ribbon-list a:hover { color: var(--violet); }
+.nav-ribbon-list span {
+  font: 9px var(--app-font-mono);
+  color: #91a4a6;
+  letter-spacing: .06em;
+}
+.nav-ribbon-list-wide { gap: 10px 38px; }
+.nav-ribbon-all {
+  color: var(--violet);
+  border-top: 1px solid #cbdde0;
+  align-items: center;
+  gap: 7px;
+  padding-top: 16px;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+}
+
+/* The anchored card would otherwise sit under the sticky header. */
+.product-card { scroll-margin-top: 105px; }
+
+@media (max-width: 900px) {
+  /* Six nav items and the button no longer fit the 700px shell here. The nav is
+     the more useful of the two; "Ask us a question" is still in the contact
+     section and the footer, and returns with the menu below 680. */
+  .header-cta { display: none; }
+  .main-nav { gap: 22px; margin-right: 0; }
+}
+
+@media (max-width: 680px) {
+  /* In the stacked menu the band is not a band: each group's links sit under
+     their heading, always open, indented one step. */
+  /* align-items:center centres the desktop row; in the stacked menu the same
+     property would centre every link across the panel. */
+  .main-nav { align-self: auto; align-items: stretch; }
+  .nav-item { flex-direction: column; align-items: stretch; }
+  .nav-ribbon {
+    visibility: visible;
+    opacity: 1;
+    background: 0 0;
+    border: 0;
+    position: static;
+    box-shadow: none;
+  }
+  .nav-ribbon-inner { width: auto; padding: 0 0 6px 14px; }
+  .nav-ribbon-label { display: none; }
+  .nav-ribbon-list { gap: 0; margin: 0; flex-direction: column; }
+  .nav-ribbon-list a { padding: 8px 0; font-size: 13px; font-weight: 500; }
+  .nav-ribbon-all { border: 0; padding: 8px 0 4px; }
+  .product-card { scroll-margin-top: 88px; }
+}
 
 /* The recovered mobile rule hid the last child of .hero-bottom to drop the
    "A Pharmascient brand" label. That label is gone from the markup, so the rule

@@ -93,7 +93,16 @@
       var wanted = location.hash.replace('#', '');
       if (!wanted) return;
       var tab = tabs.filter(function (t) { return t.dataset.filter === wanted; })[0];
-      if (tab) apply(tab.dataset.filter, labelOf(tab));
+      if (tab) { apply(tab.dataset.filter, labelOf(tab)); return; }
+
+      // The nav ribbon also links to single products (range.html#cr310). A card
+      // the current filter has hidden cannot be scrolled to, so clear the filter
+      // and go to it ourselves - the browser already gave up on a hidden target.
+      var card = document.getElementById(wanted);
+      if (card && card.classList.contains('product-card')) {
+        apply('all', 'All products');
+        card.scrollIntoView();
+      }
     };
     applyHash();
     addEventListener('hashchange', applyHash);
