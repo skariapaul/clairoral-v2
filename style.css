@@ -499,10 +499,15 @@ html.js .reveal-4 { transition-delay: .39s; }
 }
 /* --- Brand mark ------------------------------------------------------------
    Larger than the recovered design's 137px; the header has the room and the
-   wordmark was reading small against the nav. */
-.brand-mark img { width: 176px; }
+   wordmark was reading small against the nav.
+
+   Both lockup PNGs shipped with 11.3% transparent padding on each side, which
+   held the mark ~20px right of the margin its box sat on. They are cropped to
+   the artwork now, so these widths are the old ones times 467/603 - the mark is
+   the size it always was, and its left edge is where the box's left edge is. */
+.brand-mark img { width: 136px; }
 @media (max-width: 680px) {
-  .brand-mark img { width: 142px; }
+  .brand-mark img { width: 110px; }
 }
 /* ===========================================================================
    Rhythm pass. Successive edits had left every section on its own spacing and
@@ -555,10 +560,84 @@ html.js .reveal-4 { transition-delay: .39s; }
 /* The intro grid was authored as three columns: a section-index gutter, the
    heading, then the copy. The index is gone (its number moved into the eyebrow,
    matching every other section), so the grid is two columns now - without this
-   the heading inherits the narrow gutter column and wraps a word per line. */
-.intro { grid-template-columns: 57% 43%; }
+   the heading inherits the narrow gutter column and wraps a word per line.
+
+   The serum photograph now takes the right-hand column, so the heading and the
+   copy stack in the left one. That keeps the eyebrow on the left margin, in line
+   with every other section, and gives the heading a wider measure than before. */
+.intro {
+  grid-template-columns: minmax(0, 1fr) 44%;
+  /* Row two takes the slack when the photo column runs deeper than the text, so
+     the two never drift apart and the rule below always sits under both. */
+  grid-template-rows: auto 1fr auto;
+  column-gap: 72px;
+  align-items: start;
+  padding-bottom: 75px;
+  /* The recovered 545px min-height set this section's rhythm before padding did.
+     Left in, it feeds slack to the 1fr row at middling widths and opens a gap
+     above the rule. */
+  min-height: auto;
+}
+.intro-heading { grid-column: 1; }
+.intro-copy {
+  grid-column: 1;
+  /* The recovered rule bottom-aligned the copy against the heading column it used
+     to sit beside. Stacked under the heading, it has to start at the top. */
+  align-self: start;
+  max-width: 470px;
+  margin-top: 34px;
+  padding-bottom: 0;
+}
+
+/* One hairline runs the whole width of the section, under both columns, and the
+   link sits on it. */
+.intro-foot {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  border-top: 1px solid #c5dbdf;
+  margin: 46px 0 0;
+  padding-top: 12px;
+}
+
+/* The photograph runs the full width of its column. */
+.intro-object {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 100%;
+  margin: 0;
+}
+.intro-object img {
+  width: 100%;
+  height: auto;
+}
+
+/* The lockup PNG carried 11.3% transparent padding on each side, which pushed
+   the footer logo about 15px to the right of the tagline beneath it. The white
+   copy is now cropped to the artwork, so this width keeps it the size it was.
+   (The teal copy in the header still has its padding, and its own left margin
+   is set by a wider shell, so it is left alone.) */
+.brand-mark-light img { width: 106px; }
+
+/* The header ran on a 1360px shell while the content runs on 1220px, so above
+   ~1316px the logo sat 62px outside the column everything below it lines up to.
+   One shell width for both puts the mark on the content margin. */
+.header-inner { width: min(1220px, 100% - 96px); }
+
+/* The recovered mobile rule hid the last child of .hero-bottom to drop the
+   "A Pharmascient brand" label. That label is gone from the markup, so the rule
+   itself is now the last child - and would disappear below 680 without this. */
+.hero-bottom span.hero-rule { display: block; }
+
 @media (max-width: 900px) {
-  .intro { grid-template-columns: 55% 45%; }
+  .intro { grid-template-columns: minmax(0, 1fr) 42%; column-gap: 44px; }
+}
+@media (max-width: 680px) {
+  /* The recovered rule drops .intro back to display:block below 680, so the
+     stack is already vertical - the column widths just have to let go and the
+     photo runs full width under the copy. */
+  .intro-copy { max-width: 100%; margin-top: 28px; }
+  .intro-object { width: 100%; margin-top: 40px; }
+  .intro-foot { margin-top: 40px; }
 }
 /* Cards in a row are equal height, but a title that wraps to two lines pushed
    its card's CTA ~23px below its neighbour's. Pin the CTA to the bottom so the

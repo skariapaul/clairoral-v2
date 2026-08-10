@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- ?v bumped whenever style.css or script.js changes, so browsers holding a
      cached copy pick up the new version. -->
-<link rel="stylesheet" href="style.css?v=20">
+<link rel="stylesheet" href="style.css?v=26">
 
 <!-- Set before first paint so scroll-reveal blocks never flash in and out. -->
 <script>document.documentElement.classList.add('js');</script>
@@ -89,7 +89,7 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <a href="#top" class="brand-mark"><img src="official/logo-oralcare-teal.png" alt="Clair Oral Care" width="176" height="47"></a>
+    <a href="#top" class="brand-mark"><img src="official/logo-oralcare-teal.png" alt="Clair Oral Care" width="136" height="23"></a>
     <nav class="main-nav" aria-label="Main navigation">
       <a href="#featured">Bestsellers</a>
       <a href="#whitening">Whitening</a>
@@ -130,10 +130,10 @@
       <svg width="17" height="17" aria-hidden="true"><use href="#i-ur"/></svg>
     </a>
   </div>
+  <!-- The two labels that flanked this rule are gone; the rule runs the full
+       width on its own. -->
   <div class="hero-bottom reveal reveal-4">
-    <span>Gentle on sensitivity</span>
     <span class="hero-rule"></span>
-    <span>A Pharmascient brand</span>
   </div>
 </section>
 
@@ -156,10 +156,14 @@
     <h2>Oral care should be<br><em>clear by design.</em></h2>
   </div>
   <div class="intro-copy">
-    <p>Whitening that stings. Toothpaste that promises everything. Devices with twelve buttons you never press. Most oral care asks a lot and explains very little.</p>
     <p>Clair keeps it simple: high-intent ingredients, comfortable to use, in a routine you will actually keep up. No peroxide, no guesswork.</p>
-    <a class="text-link" href="#science">See why it works <svg width="15" height="15" aria-hidden="true"><use href="#i-dr"/></svg></a>
   </div>
+  <figure class="intro-object reveal reveal-2">
+    <img src="official/serum-in-hand.webp" alt="A woman in a bathroom holding up a 30 ml bottle of Clair Whitening Tooth Serum" loading="lazy" width="1300" height="866">
+  </figure>
+  <!-- One rule across both columns, closing the section under the copy and the
+       photograph alike. -->
+  <p class="intro-foot"><a class="text-link" href="#science">See why it works <svg width="15" height="15" aria-hidden="true"><use href="#i-dr"/></svg></a></p>
 </section>
 
 <section class="featured section-shell" id="featured">
@@ -342,7 +346,7 @@
     <div>
       <!-- White lockup: the footer sits on deep violet, where the purple mark
            used in the header falls away. -->
-      <a href="#top" class="brand-mark brand-mark-light"><img src="official/logo-oralcare-white.png" alt="Clair Oral Care" width="137" height="36" loading="lazy"></a>
+      <a href="#top" class="brand-mark brand-mark-light"><img src="official/logo-oralcare-white.png" alt="Clair Oral Care" width="106" height="18" loading="lazy"></a>
       <p class="footer-tagline">Gentle, modern oral care<br>for every day.</p>
     </div>
     <div class="footer-nav">
@@ -371,6 +375,6 @@
 
 </div>
 
-<script src="script.js?v=20"></script>
+<script src="script.js?v=26"></script>
 </body>
 </html>
