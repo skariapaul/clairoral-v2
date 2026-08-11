@@ -300,7 +300,7 @@
         showSuccess(
           'Message sent',
           'Thank<br><em>you.</em>',
-          'We have your enquiry. We reply to the address you gave, usually within two working days.'
+          'Thank you for your enquiry. We will get back to you shortly at the address you gave.'
         );
       }).catch(function () {
         // The details are still in the fields, so nothing typed is lost.
