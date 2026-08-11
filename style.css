@@ -691,21 +691,12 @@ html.js .reveal-4 { transition-delay: .39s; }
 }
 .nav-ribbon-list a {
   color: var(--ink);
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 18px;
   padding: 4px 0;
   font-size: 12px;
   font-weight: 700;
-  display: flex;
+  display: block;
 }
 .nav-ribbon-list a:hover { color: var(--violet); }
-.nav-ribbon-list span {
-  font: 9px var(--app-font-mono);
-  color: #91a4a6;
-  letter-spacing: .06em;
-  flex: none;
-}
 .nav-ribbon-all {
   color: var(--violet);
   border-top: 1px solid #cbdde0;
@@ -800,12 +791,7 @@ html.js .reveal-4 { transition-delay: .39s; }
     box-shadow: none;
   }
   .nav-ribbon-list { gap: 0; margin: 0; flex-direction: column; }
-  .nav-ribbon-list a {
-    justify-content: flex-start;
-    padding: 8px 0;
-    font-size: 13px;
-    font-weight: 500;
-  }
+  .nav-ribbon-list a { padding: 8px 0; font-size: 13px; font-weight: 500; }
   .nav-ribbon-all { border: 0; padding: 8px 0 4px; }
   .product-card { scroll-margin-top: 88px; }
 }
