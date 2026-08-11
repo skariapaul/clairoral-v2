@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- ?v bumped whenever style.css or script.js changes, so browsers holding a
      cached copy pick up the new version. -->
-<link rel="stylesheet" href="style.css?v=30">
+<link rel="stylesheet" href="style.css?v=32">
 
 <!-- Set before first paint so scroll-reveal blocks never flash in and out. -->
 <script>document.documentElement.classList.add('js');</script>
@@ -484,25 +484,26 @@
         <label>Your question
           <textarea name="query" rows="3" required></textarea>
         </label>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>
         <p class="form-error" data-form-error hidden>Please fill in your name, email and question.</p>
         <button class="button button-primary form-submit" type="submit">Send enquiry <svg width="17" height="17" aria-hidden="true"><use href="#i-ur"/></svg></button>
       </form>
 
-      <p class="modal-footnote">Goes to mail@pharmascient.com. We reply within two working days.</p>
+      <p class="modal-footnote">Thank you for your enquiry, we will get back to you shortly.</p>
     </div>
 
     <div class="success-state" data-enquiry-success hidden>
       <div class="success-mark">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
       </div>
-      <p class="eyebrow">Over to your mail app</p>
-      <h2>Nearly<br><em>there.</em></h2>
-      <p class="modal-copy">Your message is waiting in a new email, filled in and addressed. Press send there and it reaches us.</p>
+      <p class="eyebrow" data-success-eyebrow>Message sent</p>
+      <h2 data-success-title>Thank<br><em>you.</em></h2>
+      <p class="modal-copy" data-success-copy>We have your enquiry. We reply to the address you gave, usually within two working days.</p>
       <button class="button button-dark" type="button" data-enquiry-close>Close</button>
     </div>
   </div>
 </div>
 
-<script src="script.js?v=30"></script>
+<script src="script.js?v=32"></script>
 </body>
 </html>

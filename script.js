@@ -158,12 +158,19 @@
   });
 
   /* --- Enquiry modal ------------------------------------------------------
-     There is no server behind this site, so the form cannot post anywhere. It
-     collects the details, then hands them to the visitor's mail client as a
-     filled-in message to mail@pharmascient.com. Every trigger keeps its own
-     mailto: href, so with this file absent the links still reach the inbox -
-     just without the fields.
+     The form posts to Formspree, which forwards it to whichever inbox the form
+     is pointed at in their dashboard. The id below is the tail of the endpoint
+     and is public by design - it ships in the source of every Formspree site.
+     Change where mail lands in the dashboard, not here.
+
+     If the post fails, the form falls back to composing the message in the
+     visitor's own mail client, so nothing typed is lost. Every trigger also
+     keeps its own mailto: href, so with this file absent the links still reach
+     mail@pharmascient.com - just without the fields.
      ------------------------------------------------------------------------ */
+  var FORMSPREE_ID = 'xbgrojql';
+  var canPost = FORMSPREE_ID !== 'PASTE_FORM_ID' && FORMSPREE_ID !== '';
+
   var modal = document.getElementById('enquiry');
   var triggers = Array.prototype.slice.call(document.querySelectorAll('[data-enquiry]'));
 
@@ -226,27 +233,25 @@
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var f = form.elements;
-      var name = f.name.value.trim();
-      var email = f.email.value.trim();
-      var query = f.query.value.trim();
+    var showSuccess = function (eyebrow, title, copy) {
+      success.querySelector('[data-success-eyebrow]').textContent = eyebrow;
+      success.querySelector('[data-success-title]').innerHTML = title;
+      success.querySelector('[data-success-copy]').textContent = copy;
+      panel.hidden = true;
+      success.hidden = false;
+      form.reset();
+    };
 
-      if (!name || !email || !query) {
-        errorNote.hidden = false;
-        (!name ? f.name : !email ? f.email : f.query).focus();
-        return;
-      }
-      errorNote.hidden = true;
-
+    // Fallback for a missing form id or a failed post: hand the filled-in
+    // message to the visitor's own mail client instead of losing it.
+    var handToMailClient = function (f) {
       var body = [
-        'Name: ' + name,
-        'Email: ' + email,
+        'Name: ' + f.name.value.trim(),
+        'Email: ' + f.email.value.trim(),
         'Phone: ' + (f.phone.value.trim() || '—'),
         'Enquiry type: ' + topic.value,
         '',
-        query,
+        f.query.value.trim(),
         '',
         '— sent from clairoral.com'
       ].join('\r\n');
@@ -255,9 +260,55 @@
         + '?subject=' + encodeURIComponent('Clair Oral Care — ' + topic.value)
         + '&body=' + encodeURIComponent(body);
 
-      panel.hidden = true;
-      success.hidden = false;
-      form.reset();
+      showSuccess(
+        'Over to your mail app',
+        'Nearly<br><em>there.</em>',
+        'Your message is waiting in a new email, filled in and addressed. Press send there and it reaches us.'
+      );
+    };
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = form.elements;
+      var submit = form.querySelector('.form-submit');
+
+      if (!f.name.value.trim() || !f.email.value.trim() || !f.query.value.trim()) {
+        errorNote.textContent = 'Please fill in your name, email and question.';
+        errorNote.hidden = false;
+        (!f.name.value.trim() ? f.name
+          : !f.email.value.trim() ? f.email : f.query).focus();
+        return;
+      }
+      errorNote.hidden = true;
+
+      if (!canPost || typeof fetch !== 'function') { handToMailClient(f); return; }
+
+      var payload = new FormData(form);
+      payload.append('_subject', 'Clair Oral Care — ' + topic.value);
+
+      submit.disabled = true;
+      var label = submit.firstChild;
+      var wording = label.nodeValue;
+      label.nodeValue = 'Sending… ';
+
+      fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+        method: 'POST',
+        body: payload,
+        headers: { Accept: 'application/json' }
+      }).then(function (res) {
+        if (!res.ok) throw new Error('Formspree replied ' + res.status);
+        showSuccess(
+          'Message sent',
+          'Thank<br><em>you.</em>',
+          'We have your enquiry. We reply to the address you gave, usually within two working days.'
+        );
+      }).catch(function () {
+        // The details are still in the fields, so nothing typed is lost.
+        handToMailClient(f);
+      }).then(function () {
+        submit.disabled = false;
+        label.nodeValue = wording;
+      });
     });
   }
 })();
