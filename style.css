@@ -841,6 +841,29 @@ html.js .reveal-4 { transition-delay: .39s; }
   object-fit: contain;
   display: block;
 }
+/* Picker for products that have more than one picture; absent when they do not. */
+.zoom-thumbs {
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  display: flex;
+}
+.zoom-thumbs[hidden] { display: none; }
+.zoom-thumb {
+  cursor: pointer;
+  background: var(--paper);
+  border: 1px solid #ffffff40;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  transition: border-color .2s, opacity .2s;
+  opacity: .55;
+}
+.zoom-thumb img { width: 100%; height: 100%; object-fit: contain; }
+.zoom-thumb:hover { opacity: .85; }
+.zoom-thumb.is-current { border-color: var(--coral); opacity: 1; }
+
 .zoom-figure figcaption {
   color: #cfe0e2;
   text-align: center;

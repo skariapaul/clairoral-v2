@@ -174,8 +174,20 @@
   if (zoom) {
     var zoomImg = zoom.querySelector('[data-zoom-image]');
     var zoomCap = zoom.querySelector('[data-zoom-caption]');
+    var zoomThumbs = zoom.querySelector('[data-zoom-thumbs]');
     var zoomClose = zoom.querySelector('.zoom-close');
     var zoomOpener = null;
+    var shots = [];
+    var at = 0;
+
+    var showShot = function (i) {
+      at = (i + shots.length) % shots.length;
+      zoomImg.src = shots[at];
+      Array.prototype.forEach.call(zoomThumbs.children, function (b, n) {
+        b.classList.toggle('is-current', n === at);
+        b.setAttribute('aria-current', n === at ? 'true' : 'false');
+      });
+    };
 
     var closeZoom = function () {
       zoom.hidden = true;
@@ -189,11 +201,33 @@
       if (!trigger) return;
       e.preventDefault();
       zoomOpener = trigger;
-      zoomImg.src = trigger.getAttribute('href');
+
+      // The card's own picture first, then any others listed for this product.
+      var more = (trigger.getAttribute('data-zoom-more') || '')
+        .split('|').filter(function (v) { return v; });
+      shots = [trigger.getAttribute('href')].concat(more);
+
       zoomImg.alt = trigger.getAttribute('data-zoom-alt') || '';
       // The label reads "View <product> larger"; the product is the middle of it.
       zoomCap.textContent = (trigger.getAttribute('aria-label') || '')
         .replace(/^View\s+/, '').replace(/\s+larger$/, '');
+
+      // One picture needs no picker.
+      zoomThumbs.innerHTML = '';
+      zoomThumbs.hidden = shots.length < 2;
+      if (shots.length > 1) {
+        shots.forEach(function (src, n) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'zoom-thumb';
+          b.setAttribute('aria-label', 'Picture ' + (n + 1) + ' of ' + shots.length);
+          b.innerHTML = '<img src="' + src + '" alt="">';
+          b.addEventListener('click', function () { showShot(n); });
+          zoomThumbs.appendChild(b);
+        });
+      }
+
+      showShot(0);
       zoom.hidden = false;
       document.body.style.overflow = 'hidden';
       zoomClose.focus();
@@ -206,7 +240,11 @@
     });
 
     addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !zoom.hidden) closeZoom();
+      if (zoom.hidden) return;
+      if (e.key === 'Escape') { closeZoom(); return; }
+      if (shots.length < 2) return;
+      if (e.key === 'ArrowRight') { e.preventDefault(); showShot(at + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); showShot(at - 1); }
     });
   }
 
