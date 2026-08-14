@@ -81,6 +81,13 @@
       return tab.textContent.replace(span ? span.textContent : '', '').trim();
     };
 
+    // The filter strip scrolls sideways on a phone - 892px of tabs in a 390px
+    // window - so an active filter set from the URL can sit off-screen with no
+    // sign the page is filtered at all. Bring it into view.
+    var revealTab = function (tab) {
+      if (tab.scrollIntoView) tab.scrollIntoView({ block: 'nearest', inline: 'center' });
+    };
+
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
         apply(tab.dataset.filter, labelOf(tab));
@@ -93,7 +100,7 @@
       var wanted = location.hash.replace('#', '');
       if (!wanted) return;
       var tab = tabs.filter(function (t) { return t.dataset.filter === wanted; })[0];
-      if (tab) { apply(tab.dataset.filter, labelOf(tab)); return; }
+      if (tab) { apply(tab.dataset.filter, labelOf(tab)); revealTab(tab); return; }
 
       // The nav ribbon also links to single products (range.html#cr310). A card
       // the current filter has hidden cannot be scrolled to, so clear the filter
