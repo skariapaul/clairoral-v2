@@ -164,6 +164,52 @@
     reveals.forEach(function (el) { if (inView(el)) reveal(el); });
   });
 
+  /* --- Product zoom -------------------------------------------------------
+     Each card's arrow is a link to its own image file, so with this script
+     absent the browser just opens the picture. Here we intercept it and show
+     the image over the page instead.
+     ------------------------------------------------------------------------ */
+  var zoom = document.getElementById('zoom');
+
+  if (zoom) {
+    var zoomImg = zoom.querySelector('[data-zoom-image]');
+    var zoomCap = zoom.querySelector('[data-zoom-caption]');
+    var zoomClose = zoom.querySelector('.zoom-close');
+    var zoomOpener = null;
+
+    var closeZoom = function () {
+      zoom.hidden = true;
+      zoomImg.src = '';
+      document.body.style.overflow = '';
+      if (zoomOpener) zoomOpener.focus();
+    };
+
+    document.addEventListener('click', function (e) {
+      var trigger = e.target.closest('[data-zoom]');
+      if (!trigger) return;
+      e.preventDefault();
+      zoomOpener = trigger;
+      zoomImg.src = trigger.getAttribute('href');
+      zoomImg.alt = trigger.getAttribute('data-zoom-alt') || '';
+      // The label reads "View <product> larger"; the product is the middle of it.
+      zoomCap.textContent = (trigger.getAttribute('aria-label') || '')
+        .replace(/^View\s+/, '').replace(/\s+larger$/, '');
+      zoom.hidden = false;
+      document.body.style.overflow = 'hidden';
+      zoomClose.focus();
+    });
+
+    zoom.addEventListener('click', function (e) {
+      // Only a hit on the backdrop itself, or the close button, dismisses it -
+      // clicks on the picture bubble up from a descendant.
+      if (e.target === zoom || e.target.closest('.zoom-close')) closeZoom();
+    });
+
+    addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !zoom.hidden) closeZoom();
+    });
+  }
+
   /* --- Enquiry modal ------------------------------------------------------
      The form posts to Formspree, which forwards it to whichever inbox the form
      is pointed at in their dashboard. The id below is the tail of the endpoint

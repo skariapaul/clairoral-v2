@@ -810,6 +810,52 @@ html.js .reveal-4 { transition-delay: .39s; }
    124px and the words get everything else. It is also no taller overall, since
    nineteen short rows beat ten tall ones.
    =========================================================================== */
+/* ===========================================================================
+   Product zoom.
+   The round arrow on every card used to open a mailto: for that one product -
+   nineteen ways to compose the same email. It opens the photograph instead.
+   =========================================================================== */
+.zoom-backdrop {
+  z-index: 60;
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+  background: #26474bdb;
+  place-items: center;
+  padding: 24px;
+  animation: .2s fadeIn;
+  display: grid;
+  position: fixed;
+  inset: 0;
+}
+/* place-items on the backdrop outranks the UA rule for [hidden]. */
+.zoom-backdrop[hidden] { display: none; }
+.zoom-figure {
+  max-width: min(760px, 100%);
+  margin: 0;
+  animation: .3s rise;
+}
+.zoom-figure img {
+  background: var(--paper);
+  width: 100%;
+  max-height: 74vh;
+  object-fit: contain;
+  display: block;
+}
+.zoom-figure figcaption {
+  color: #cfe0e2;
+  text-align: center;
+  margin-top: 16px;
+  font: 500 10px var(--app-font-mono);
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.zoom-close {
+  color: var(--paper);
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+
 /* Two columns still, but the recovered rule pins the description to a 110px box
    at 8px whatever the card width - on a 600-680px screen that is a third of the
    card left unused and type too small to read. */
