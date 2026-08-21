@@ -191,7 +191,7 @@
 
     var closeZoom = function () {
       zoom.hidden = true;
-      zoomImg.src = '';
+      zoomImg.removeAttribute('src');
       document.body.style.overflow = '';
       if (zoomOpener) zoomOpener.focus();
     };
