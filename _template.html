@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{title}</title>
+<meta name="description" content="{descr}">
+<link rel="canonical" href="https://clairoral.com{url}">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="product">
+<meta property="og:site_name" content="Clair Oral Care">
+<meta property="og:url" content="https://clairoral.com{url}">
+<meta property="og:title" content="{ogtitle}">
+<meta property="og:description" content="{descr}">
+<meta property="og:image" content="https://clairoral.com/{img}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{ogtitle}">
+<meta name="twitter:description" content="{descr}">
+<meta name="twitter:image" content="https://clairoral.com/{img}">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/style.css?v={v}">
+
+<script>document.documentElement.classList.add('js');</script>
+
+<script type="application/ld+json">
+{jsonld}
+</script>
+
+<!-- Cloudflare Web Analytics (cookie-free) -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "0cd597626e144c0b8d7d5eea46ce97aa"}}'></script>
+</head>
+<body>
+
+<a class="skip-link" href="#product">Skip to the product</a>
+
+{sprite}
+
+<div class="clair-site" id="top">
+
+{announce}
+
+{header}
+
+<main>
+
+<section class="page-head section-shell">
+  <nav class="crumb" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href="/range.html">All products</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">{name}</span>
+  </nav>
+</section>
+
+<section class="product-page section-shell" id="product">
+  <figure class="product-figure {tint}">
+    <img class="official-product-image" src="/{img}" alt="{alt}" width="300" height="290">
+  </figure>
+
+  <div class="product-detail">
+    <p class="eyebrow">{code} &middot; {cat_label}</p>
+    <h1>{name}</h1>
+    <p class="product-lede">{lede}</p>
+{specs}{gallery}
+    <a class="button button-primary" data-enquiry="Product question" data-enquiry-product="{name}" href="mailto:mail@pharmascient.com?subject={subject}">Ask about this product <svg width="17" height="17" aria-hidden="true"><use href="#i-ur"/></svg></a>
+    <p class="product-back"><a class="text-link" href="/range.html#{cat}">See all {cat_lower} <svg width="15" height="15" aria-hidden="true"><use href="#i-ur"/></svg></a></p>
+  </div>
+</section>
+{related}
+</main>
+
+{footer}
+
+</div>
+
+{modal}
+
+{zoom}
+
+<script src="/script.js?v={v}"></script>
+</body>
+</html>

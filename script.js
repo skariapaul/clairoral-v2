@@ -273,7 +273,7 @@
     var topic = form.elements.topic;
     var lastFocused = null;
 
-    var openModal = function (preset) {
+    var openModal = function (preset, product) {
       lastFocused = document.activeElement;
       panel.hidden = false;
       success.hidden = true;
@@ -285,6 +285,8 @@
           if (o.text === preset) topic.selectedIndex = i;
         });
       }
+      // Opened from a product page, the form should already know which product.
+      if (product) form.elements.query.value = 'About the ' + product + ': ';
       form.elements.name.focus();
     };
 
@@ -297,7 +299,7 @@
     triggers.forEach(function (t) {
       t.addEventListener('click', function (e) {
         e.preventDefault();
-        openModal(t.dataset.enquiry);
+        openModal(t.dataset.enquiry, t.dataset.enquiryProduct);
       });
     });
 

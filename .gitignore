@@ -2,3 +2,6 @@
 # official/ are what ships; the originals are 1-15MB each and have no business
 # in a public repo.
 incoming/
+
+# Scratch state for _gen.py; the generated pages under products/ are committed.
+_products.json
