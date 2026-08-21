@@ -1096,3 +1096,66 @@ html.js .reveal-4 { transition-delay: .39s; }
   .related-media { height: 116px; padding: 12px; }
   .related-name { margin: 0; }
 }
+
+/* ===========================================================================
+   Reviews, quoted from the product's Amazon.ae listing.
+   Stars carry the brand teal rather than the usual marketplace gold, and there
+   is no verified badge - see the note in _reviews.py for why.
+   =========================================================================== */
+.reviews { border-top: 1px solid #c5dbdf; padding: 56px 0 8px; }
+.reviews-head {
+  font: 500 10px var(--app-font-mono);
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin: 0 0 26px;
+}
+.review-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+}
+.review {
+  background: var(--paper);
+  border: 1px solid #cbdde0;
+  padding: 22px 24px 24px;
+}
+.review-head {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin: 0 0 4px;
+  display: flex;
+}
+.review-name { font-size: 14px; font-weight: 800; }
+.review-stars {
+  color: var(--violet);
+  align-items: center;
+  gap: 2px;
+  display: inline-flex;
+}
+.review-source {
+  font: 500 9px var(--app-font-mono);
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: #8aa0a3;
+  margin: 0 0 14px;
+}
+.review-title { margin: 0 0 6px; font-size: 14px; font-weight: 700; }
+.review-body { color: #5f7477; margin: 0; font-size: 13px; line-height: 1.65; }
+.reviews-note {
+  color: #8aa0a3;
+  border-top: 1px solid #c5dbdf;
+  margin: 26px 0 0;
+  padding-top: 14px;
+  font: 10px/1.6 var(--app-font-mono);
+}
+
+@media (max-width: 680px) {
+  .reviews { padding-top: 44px; }
+  .review-grid { grid-template-columns: 1fr; gap: 10px; }
+  .review { padding: 18px 18px 20px; }
+}

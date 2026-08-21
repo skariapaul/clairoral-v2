@@ -5,6 +5,8 @@ is lifted straight out of range.html so these pages cannot drift from it, with
 paths made root-relative because they live two directories down.
 """
 import json, re, html, os, unicodedata
+from _reviews import reviews_block
+from _catalog import load_products
 
 src = open('range.html', encoding='utf-8').read()
 lines = src.split('\n')
@@ -80,14 +82,13 @@ def esc(s):
     return html.escape(s, quote=True)
 
 
-products = json.load(open('_products.json', encoding='utf-8'))
+products = load_products(src)
 for p in products:
     p['slug'] = slug(p['name'])
     p['sku'] = p['code'].replace(' / ', '').replace(' ', '')
     p['url'] = '/products/' + p['slug'] + '/'
     p['cat_label'] = CATEGORY[p['category']]
     p['lede'] = LEDE.get(p['id'], p['desc'])
-json.dump(products, open('_products.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 
 
 # Written out by hand, not scraped. The catalogue's notes field is an internal
@@ -187,6 +188,7 @@ for p in products:
         name=esc(p['name']), alt=esc(p['alt']), code=esc(p['code']), cat_label=p['cat_label'],
         cat=p['category'], cat_lower=p['cat_label'].lower(), lede=esc(p['lede']),
         specs=specs_list(p), gallery=gallery(p), related=related(p, products),
+        reviews=reviews_block(p['id']),
         tint='visual-violet' if p['category'] == 'whitening' else 'visual-mint',
         subject=subject)
 
