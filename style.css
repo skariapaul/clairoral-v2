@@ -1176,3 +1176,54 @@ html.js .reveal-4 { transition-delay: .39s; }
   text-align: center;
 }
 .product-colours .text-link { font-size: 10px; }
+
+/* --- Product renders cropped to the product --------------------------------
+   The renders used to share one canvas (994x1200), so every tile got the same
+   shape whatever was in it. They are now cropped to the pack, which makes the
+   product fill the tile but leaves aspect ratios running from 0.25 (a
+   toothbrush blister) to 1.57 (the strips carton).
+
+   Desktop tiles have a fixed height, so they do not care. At <=600px the tile
+   takes its height from the card row, and an in-flow image would set that
+   height itself - a 0.25 render would push one card to three times the height
+   of its neighbour. Out of flow, the tile keeps its own shape and object-fit
+   does the scaling. */
+.product-card .official-product-image {
+  /* Explicit percentages, not inset with auto sizing: for an absolutely
+     positioned REPLACED element the intrinsic size wins and the offsets are
+     ignored, so `inset` alone left the image at its natural height and the tile
+     clipped it. */
+  position: absolute;
+  top: 5%;
+  left: 4%;
+  width: 92%;
+  height: 90%;
+}
+
+/* The product-page figure sized the render by width alone, which was fine when
+   every render shared a 0.83 canvas. Cropped to the pack, CR180 is 0.27, and
+   78% of the column width made a 1395px-tall image in a 1435px-tall figure.
+   Bounding both ways lets the pack be as large as fits either dimension. */
+.product-figure .official-product-image {
+  width: auto;
+  height: auto;
+  max-width: 78%;
+  max-height: 470px;
+}
+
+/* Same width-only sizing as the figure had, and .related-media is a fixed
+   190px (116px on small screens) with visible overflow - so a cropped 0.27
+   render drew 243px tall and spilled out of the card over the footer. */
+.related-media img {
+  /* A pixel cap, not 100%: the tile is a grid whose single auto row does not
+     give the item a definite height to resolve a percentage against, so
+     max-height: 100% computed to no limit and the image still spilled.
+     190px tile less 18px padding either side, 116px less 12px below 900px. */
+  width: auto;
+  height: auto;
+  max-width: 62%;
+  max-height: 154px;
+}
+@media (max-width: 900px) {
+  .related-media img { max-height: 92px; }
+}
