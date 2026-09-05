@@ -66,14 +66,25 @@ a { color: inherit; }
    transparent background. Only `visual-ink` had a definition. These are the
    tints that were clearly intended, keyed to the brand tokens.
    -------------------------------------------------------------------------- */
-.visual-lilac  { background: #c9e3e6; }
-.visual-coral  { background: #f6c7b9; }
-.visual-sky    { background: #bfe1e3; }
-.visual-lemon  { background: #e3ecb5; }
-.visual-mint   { background: #c9e3d5; }
-.visual-rose   { background: #eeccd7; }
-.visual-violet { background: #cdb9e7; }
-.visual-ink    { background: #d0dddf; }
+/* Retinted 2026-09-05. The first set was keyed to the old cream-and-purple
+   palette and never followed the move to aquamarine, so `coral` was still a
+   #f6c7b9 peach at 77% saturation and `lemon` and `rose` a yellow-green and a
+   pink - loud against an #e8f3f6 page and reading as playful rather than as
+   clinical oral care. These sit in the brand's own arc, roughly hue 90-205 at
+   11-36% saturation, so the tiles differ enough to give the grid rhythm without
+   any of them competing with the product.
+
+   `visual-violet` stays purple: it is the serum's tile, and purple is the
+   serum's colour. Against a quiet grid it now reads as the deliberate accent it
+   was meant to be rather than one loud tile among several. */
+.visual-sky    { background: #c8dee6; }  /* coolest aqua        */
+.visual-lilac  { background: #dae4ea; }  /* pale blue           */
+.visual-ink    { background: #cfdcde; }  /* grey-teal           */
+.visual-mint   { background: #cce0d4; }  /* sage green          */
+.visual-coral  { background: #dde2d9; }  /* pale warm sage      */
+.visual-lemon  { background: #e2e6d3; }  /* soft olive          */
+.visual-rose   { background: #e2e3e5; }  /* near-neutral        */
+.visual-violet { background: #d3c6e2; }  /* the serum, on purpose */
 
 /* --- Skip link ------------------------------------------------------------ */
 .skip-link {
