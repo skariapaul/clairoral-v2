@@ -85,6 +85,11 @@ a { color: inherit; }
 .visual-lemon  { background: #d7e4e0; }  /* cool eucalyptus     */
 .visual-rose   { background: #e2e3e5; }  /* near-neutral        */
 .visual-violet { background: #d3c6e2; }  /* the serum, on purpose */
+/* The strips are the other whitening product, so they take the serum's hue at a
+   lighter value - same 268, 90% lightness against the serum's 83% - rather than
+   a colour from elsewhere in the set. Its own class, because the tile it used
+   to share (visual-coral) also carries the copper tongue cleaner. */
+.visual-violet-soft { background: #e5ddee; }
 
 /* --- Skip link ------------------------------------------------------------ */
 .skip-link {
