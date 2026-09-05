@@ -843,12 +843,20 @@ html.js .reveal-4 { transition-delay: .39s; }
 }
 /* Picker for products that have more than one picture; absent when they do not. */
 .zoom-thumbs {
-  justify-content: center;
-  flex-wrap: wrap;
+  /* Colour variants can run to five or more shots, so the picker scrolls on one
+     line rather than wrapping. "safe center" keeps it centred when it fits and
+     falls back to flush-start when it overflows, so the first thumb stays
+     reachable. */
+  justify-content: safe center;
+  flex-wrap: nowrap;
   gap: 8px;
   margin-top: 12px;
+  padding-bottom: 4px;
   display: flex;
+  overflow-x: auto;
+  scrollbar-width: thin;
 }
+.zoom-thumb { flex: 0 0 auto; }
 .zoom-thumbs[hidden] { display: none; }
 .zoom-thumb {
   cursor: pointer;
@@ -1159,3 +1167,12 @@ html.js .reveal-4 { transition-delay: .39s; }
   .review-grid { grid-template-columns: 1fr; gap: 10px; }
   .review { padding: 18px 18px 20px; }
 }
+
+/* --- Colour variants -------------------------------------------------------
+   Only the two products that come in more than one handle colour carry this,
+   so it reads as a real affordance rather than a decoration on every page. */
+.product-colours {
+  margin-top: 18px;
+  text-align: center;
+}
+.product-colours .text-link { font-size: 10px; }
