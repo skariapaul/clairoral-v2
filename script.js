@@ -405,3 +405,120 @@
     });
   }
 })();
+
+/* --- Colourway preview on hover --------------------------------------------
+   Cards whose markup says their extra shots are colourways (data-variant-kind)
+   cycle through them while the pointer is over the card. A second image is
+   stacked over the first and cross-faded, rather than swapping src on one image,
+   so the change reads as a dissolve instead of a flicker.
+
+   Skipped entirely on touch, where there is no hover to trigger it, and under a
+   reduced-motion preference. The variants are already on the page as zoom shots,
+   so this costs no new assets - only the decode, deferred until first hover. */
+(function () {
+  if (!window.matchMedia) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  Array.prototype.forEach.call(document.querySelectorAll('.product-card'), function (card) {
+    var trigger = card.querySelector('[data-variant-kind="colour"]');
+    if (!trigger) return;
+
+    var shots = [trigger.getAttribute('href')]
+      .concat((trigger.getAttribute('data-zoom-more') || '').split('|'))
+      .filter(function (s) { return s; });
+    if (shots.length < 2) return;
+
+    var base = card.querySelector('.official-product-image');
+    if (!base) return;
+
+    var layer = base.cloneNode(false);
+    layer.className = base.className + ' variant-layer';
+    layer.setAttribute('aria-hidden', 'true');
+    layer.setAttribute('alt', '');
+    layer.removeAttribute('loading');
+    /* The base image carries the shared name for the page transition; a copy of
+       it would be a duplicate, which invalidates the whole transition. */
+    layer.style.viewTransitionName = 'none';
+    base.parentNode.insertBefore(layer, base.nextSibling);
+
+    var at = 0, timer = null, warmed = false;
+
+    function warm() {
+      if (warmed) return;
+      warmed = true;
+      shots.forEach(function (s) { var im = new Image(); im.src = s; });
+    }
+
+    function step() {
+      at = (at % (shots.length - 1)) + 1;      // the variants only, never back to the base
+      var next = shots[at];
+      var probe = new Image();
+      probe.onload = function () {
+        layer.src = next;
+        layer.classList.add('is-on');
+      };
+      probe.src = next;
+    }
+
+    card.addEventListener('mouseenter', function () {
+      warm();
+      if (timer) return;
+      step();
+      timer = setInterval(step, 1100);
+    });
+
+    card.addEventListener('mouseleave', function () {
+      clearInterval(timer);
+      timer = null;
+      at = 0;
+      layer.classList.remove('is-on');
+    });
+  });
+})();
+
+/* --- Shared-element page transition ----------------------------------------
+   The pack morphs from its card on the range page into the picture on the
+   product page: both get the same view-transition-name, so the browser treats
+   them as one element moving rather than two swapping.
+
+   The product page declares its name in CSS - one element. The range page names
+   only the card being clicked: declaring all nineteen up front would work, but
+   view-transition-name forces containment on each, and those cards already carry
+   contain: paint. No reason to hold nineteen permanent containment contexts to
+   animate one.
+
+   pageswap fires with the outgoing snapshot still to be taken, which is exactly
+   when the name has to be in place. Browsers without it navigate as before. */
+(function () {
+  var grid = document.querySelector('.product-grid');
+  if (!grid || !('startViewTransition' in document)) return;
+
+  var named = null;
+  function clear() {
+    if (!named) return;
+    named.style.viewTransitionName = '';
+    named = null;
+  }
+
+  addEventListener('pageswap', function (e) {
+    if (!e.viewTransition || !e.activation || !e.activation.entry) return;
+    var to = e.activation.entry.url;
+    var card = null;
+    Array.prototype.some.call(grid.querySelectorAll('.product-card'), function (c) {
+      var link = c.querySelector('.product-card-info a[href]');
+      if (link && to.indexOf(link.getAttribute('href')) !== -1) { card = c; return true; }
+      return false;
+    });
+    if (!card) return;
+    var img = card.querySelector('.official-product-image:not(.variant-layer)');
+    if (!img) return;
+    named = img;
+    img.style.viewTransitionName = 'prod-' + card.id;
+  });
+
+  /* Coming back through history the page is restored from bfcache with the name
+     still set, which would leave one card containment-bound for no reason. */
+  addEventListener('pagereveal', clear);
+  addEventListener('pageshow', clear);
+})();

@@ -124,20 +124,40 @@ def gallery(p):
     shots = [p['img']] + p['more']
     if len(shots) < 2:
         return ''
+    if p.get('variant_kind') == 'colour':
+        return ''          # shown as a figcaption on the picture instead
     thumbs = '\n'.join(
         '        <li><img src="/' + s + '" alt="" loading="lazy" width="300" height="290"></li>'
         for s in shots[1:])
     return '      <ul class="product-more">\n' + thumbs + '\n      </ul>\n'
 
 
+def figcaption(p):
+    """Colourways read better as one link opening the zoom's picker than as a
+    row of near-identical thumbnails, so those products caption the picture."""
+    shots = [p['img']] + [s for s in p['more'] if s]
+    if p.get('variant_kind') != 'colour' or len(shots) < 2:
+        return ''
+    more = '|'.join('/' + s for s in shots[1:])
+    return '\n'.join([
+        '    <figcaption class="product-colours">',
+        '      <a class="text-link" href="/' + shots[0] + '" data-zoom'
+        ' data-zoom-more="' + more + '"',
+        '         data-zoom-alt="' + esc(p['alt']) + '"'
+        ' aria-label="' + esc(p['name']) + ' larger">'
+        'View ' + str(len(shots)) + ' handle colours '
+        '<svg width="15" height="15" aria-hidden="true"><use href="#i-zoom"/></svg></a>',
+        '    </figcaption>',
+        ''])
+
+
 def related(p, all_products):
     sibs = [q for q in all_products if q['category'] == p['category'] and q['id'] != p['id']][:3]
     if not sibs:
         return ''
-    tint = 'visual-violet' if p['category'] == 'whitening' else 'visual-mint'
     cards = '\n'.join(
         '      <a class="related-card" href="' + q['url'] + '">\n'
-        '        <span class="related-media ' + tint + '"><img src="/' + q['img'] +
+        '        <span class="related-media ' + q['tint'] + '"><img src="/' + q['img'] +
         '" alt="" loading="lazy" width="300" height="290"></span>\n'
         '        <span class="related-name">' + esc(q['name']) + '</span>\n'
         '      </a>' for q in sibs)
@@ -187,9 +207,10 @@ for p in products:
         sprite=SPRITE, announce=ANNOUNCE, header=HEADER, footer=FOOTER, modal=MODAL, zoom=ZOOM,
         name=esc(p['name']), alt=esc(p['alt']), code=esc(p['code']), cat_label=p['cat_label'],
         cat=p['category'], cat_lower=p['cat_label'].lower(), lede=esc(p['lede']),
-        specs=specs_list(p), gallery=gallery(p), related=related(p, products),
+        specs=specs_list(p), gallery=gallery(p), figcaption=figcaption(p),
+        related=related(p, products),
         reviews=reviews_block(p['id']),
-        tint='visual-violet' if p['category'] == 'whitening' else 'visual-mint',
+        tint=p['tint'], pid=p['id'],
         subject=subject)
 
     d = os.path.join('products', p['slug'])

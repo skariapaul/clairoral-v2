@@ -1258,3 +1258,111 @@ html.js .reveal-4 { transition-delay: .39s; }
 .visual-shadow { display: none; }
 .official-product-image,
 .product-figure .official-product-image { filter: none; }
+
+
+/* ===========================================================================
+   Motion
+   ---------------------------------------------------------------------------
+   Everything on the site entered the same way: one reveal, fade plus an 18px
+   rise, four stagger delays, applied to headings, photographs and product grids
+   alike, once, and then nothing moved again. What follows varies the entrance by
+   what the thing is, and ties some of it to scroll position rather than to a
+   single crossing of a threshold.
+   ======================================================================== */
+
+/* --- Cross-page transitions ------------------------------------------------
+   Nineteen product pages and a range page are separate documents, so every
+   product click was a white reload. This makes the browser cross-fade between
+   them, and morph the pack from its card into the product page's picture: the
+   two images share a view-transition-name, so the browser treats them as one
+   element moving rather than two elements swapping.
+
+   Names must be unique among rendered elements. Filtered-out cards are
+   display:none and so are not rendered, which is why the whole set can be
+   declared at once. Chrome, Edge and Safari honour this; Firefox ignores the
+   at-rule and navigates exactly as before. */
+@view-transition { navigation: auto; }
+
+/* Only the product page declares a name statically - one element, and it is
+   always the other half of the morph. The range page names the card being
+   clicked, from script, on pageswap. Declaring all nineteen up front would work,
+   but view-transition-name forces containment on every one of them, and those
+   cards already carry contain: paint; there is no reason to hold nineteen
+   permanent containment contexts to animate one. */
+[data-product="cr409"] .official-product-image { view-transition-name: prod-cr409; }
+[data-product="brush-heads"] .official-product-image { view-transition-name: prod-brush-heads; }
+[data-product="cr503"] .official-product-image { view-transition-name: prod-cr503; }
+[data-product="cr310"] .official-product-image { view-transition-name: prod-cr310; }
+[data-product="cr311"] .official-product-image { view-transition-name: prod-cr311; }
+[data-product="cr320"] .official-product-image { view-transition-name: prod-cr320; }
+[data-product="cr325"] .official-product-image { view-transition-name: prod-cr325; }
+[data-product="cr180"] .official-product-image { view-transition-name: prod-cr180; }
+[data-product="cr150"] .official-product-image { view-transition-name: prod-cr150; }
+[data-product="cr120"] .official-product-image { view-transition-name: prod-cr120; }
+[data-product="cr110"] .official-product-image { view-transition-name: prod-cr110; }
+[data-product="cr228"] .official-product-image { view-transition-name: prod-cr228; }
+[data-product="cr090"] .official-product-image { view-transition-name: prod-cr090; }
+[data-product="cr235"] .official-product-image { view-transition-name: prod-cr235; }
+[data-product="cr220"] .official-product-image { view-transition-name: prod-cr220; }
+[data-product="cr210"] .official-product-image { view-transition-name: prod-cr210; }
+[data-product="cr242"] .official-product-image { view-transition-name: prod-cr242; }
+[data-product="cr124"] .official-product-image { view-transition-name: prod-cr124; }
+[data-product="cr259"] .official-product-image { view-transition-name: prod-cr259; }
+
+
+::view-transition-old(root) { animation-duration: .32s; }
+::view-transition-new(root) { animation-duration: .32s; }
+::view-transition-group(*) { animation-duration: .42s; animation-timing-function: cubic-bezier(.2, .8, .2, 1); }
+
+/* The API does not consult the motion preference on its own. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}
+
+/* --- Scroll-linked motion --------------------------------------------------
+   Reveals are binary: hidden, then shown. These are driven by where the element
+   sits in the viewport, so a photograph keeps settling as you scroll rather than
+   arriving once. animation-timeline runs off the main thread, which matters on a
+   page that has frozen a renderer before over stacked blur layers.
+
+   Left out of the settle: .product-figure images on product pages, which are the
+   morph target above, and card images, which already carry a hover transform. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-photo img {
+      animation: hero-drift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+    @keyframes hero-drift {
+      from { transform: scale(1.07) translateY(-1.5%); }
+      to   { transform: scale(1.07) translateY(1.5%); }
+    }
+
+    .feature-media img,
+    .whitening-figure img,
+    .range-cta-figure img {
+      animation: settle linear both;
+      animation-timeline: view();
+      animation-range: entry 12% cover 42%;
+    }
+    @keyframes settle {
+      from { transform: scale(1.05); opacity: .75; }
+      to   { transform: none; opacity: 1; }
+    }
+  }
+}
+
+/* --- Colourway preview on hover --------------------------------------------
+   CR210 comes in four handle colours and CR124 in two, and until now you had to
+   open the zoom to find that out. The second layer is inserted by script and
+   only for cards whose card markup says its extra shots are colourways, so this
+   is dynamism from actual product range rather than decoration. */
+.product-card .variant-layer {
+  z-index: 2;
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+.product-card .variant-layer.is-on { opacity: 1; }

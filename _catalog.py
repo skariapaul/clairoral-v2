@@ -27,6 +27,11 @@ def load_products(page_source):
             # The title is a link now, so allow for the anchor around it.
             'name': _one(r'<h3>(?:<a[^>]*>)?(.*?)(?:</a>)?</h3>', body),
             'desc': _one(r'</h3><p>(.*?)</p>', body),
+            # The card's own tile colour, so the product page cannot drift from it.
+            'tint': _one(r'class="product-visual (visual-[a-z-]+)"', body, default='visual-mint'),
+            # Extra shots are colourways for some products and a second angle for
+            # others; the page presents them differently, so the card says which.
+            'variant_kind': _one(r'data-variant-kind="([a-z]+)"', body, default=''),
             'img': re.search(r'class="official-product-image" src="([^"]+)"', body).group(1),
             'alt': _one(r'class="official-product-image"[^>]*alt="([^"]*)"', body, default=''),
             'more': more.group(1).split('|') if more else [],
