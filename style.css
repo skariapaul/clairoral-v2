@@ -1285,9 +1285,9 @@ html.js .reveal-4 { transition-delay: .39s; }
 
 /* Only the product page declares a name statically - one element, and it is
    always the other half of the morph. The range page names the card being
-   clicked, from script, on pageswap. Declaring all nineteen up front would work,
+   clicked, from script, on pageswap. Declaring all twenty up front would work,
    but view-transition-name forces containment on every one of them, and those
-   cards already carry contain: paint; there is no reason to hold nineteen
+   cards already carry contain: paint; there is no reason to hold twenty
    permanent containment contexts to animate one. */
 [data-product="cr409"] .official-product-image { view-transition-name: prod-cr409; }
 [data-product="brush-heads"] .official-product-image { view-transition-name: prod-brush-heads; }
@@ -1305,6 +1305,7 @@ html.js .reveal-4 { transition-delay: .39s; }
 [data-product="cr235"] .official-product-image { view-transition-name: prod-cr235; }
 [data-product="cr220"] .official-product-image { view-transition-name: prod-cr220; }
 [data-product="cr210"] .official-product-image { view-transition-name: prod-cr210; }
+[data-product="tc-loop"] .official-product-image { view-transition-name: prod-tc-loop; }
 [data-product="cr242"] .official-product-image { view-transition-name: prod-cr242; }
 [data-product="cr124"] .official-product-image { view-transition-name: prod-cr124; }
 [data-product="cr259"] .official-product-image { view-transition-name: prod-cr259; }

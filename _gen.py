@@ -105,11 +105,16 @@ SPECS = {
               '60 g pump dispenser'],
     'cr325': ['Daily fluoride', 'With xylitol', 'Icy peach', '60 g pump dispenser'],
     'cr210': ['Stainless steel', 'Anti-slip handle'],
+    'tc-loop': ['Stainless steel loop', 'Removes bacteria', 'Reduces bad breath'],
     'cr220': ['Pure copper'],
     'cr090': ['50 picks per pouch'],
     'cr228': ['25 picks per box'],
     'cr124': ['Two-piece set for braces wearers'],
 }
+
+
+# Products with no factory code yet: the card label is descriptive, not a SKU.
+NO_SKU = {'tc-loop'}
 
 
 def specs_list(p):
@@ -185,7 +190,8 @@ for p in products:
     jsonld = json.dumps({
         '@context': 'https://schema.org',
         '@graph': [
-            {'@type': 'Product', 'name': p['name'], 'sku': p['sku'],
+            {'@type': 'Product', 'name': p['name'],
+             **({} if p['id'] in NO_SKU else {'sku': p['sku']}),
              'description': re.sub(r'\s+', ' ', p['lede']),
              'image': 'https://clairoral.com/' + p['img'],
              'brand': {'@type': 'Brand', 'name': 'Clair Oral Care'},
