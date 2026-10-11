@@ -176,7 +176,9 @@ VERSION = re.search(r'style\.css\?v=(\d+)', src).group(1)
 os.makedirs('products', exist_ok=True)
 
 for p in products:
-    title = p['name'] + ' ' + p['sku'] + ' — Clair' if p['sku'].startswith('CR') else p['name'] + ' — Clair'
+    # Toothbrush names already end in their code; don't print it twice.
+    has_code = p['sku'].startswith('CR') and p['sku'] not in p['name']
+    title = p['name'] + ' ' + p['sku'] + ' — Clair' if has_code else p['name'] + ' — Clair'
     if len(title) > 60:
         title = p['name'] + ' — Clair'
 
