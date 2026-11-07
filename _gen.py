@@ -70,6 +70,12 @@ LEDE = {
              'you through two minutes. One charge lasts up to 45 days.',
     'cr503': 'For the gaps a brush cannot reach. Five modes and eight pressure levels, '
              'cordless and rechargeable — and far easier to live with if you wear braces.',
+    'pf-refill': 'Fifty single-loop floss picks to top up your PocketFloss dispenser, with a '
+                 'pick on the other end for what the floss leaves behind.',
+    'interfloss': 'Floss on one side, a soft tapered interdental brush on the other. The '
+                  'bristles lift plaque from tight spaces while staying gentle on gums.',
+    'tc-rainbow': 'A toothed, U-shaped stainless steel cleaner with a soft serrated edge that '
+                  'clears the tongue in a few gentle passes. Finished in rainbow titanium.',
 }
 
 
@@ -106,15 +112,19 @@ SPECS = {
     'cr325': ['Daily fluoride', 'With xylitol', 'Icy peach', '60 g pump dispenser'],
     'cr210': ['Stainless steel', 'Anti-slip handle'],
     'tc-loop': ['Stainless steel loop', 'Removes bacteria', 'Reduces bad breath'],
-    'cr220': ['Pure copper'],
+    'cr220': ['Pure copper', 'U-shaped, flexes to fit'],
+    'tc-rainbow': ['Stainless steel', 'Toothed U-shape', 'Soft serrated scraping edge',
+                   'Rainbow titanium finish'],
     'cr090': ['50 picks per pouch'],
     'cr228': ['25 picks per box'],
+    'pf-refill': ['50 floss picks', 'Refills the PocketFloss dispenser', 'Clear storage case'],
+    'interfloss': ['2-in-1 floss and interdental pick', 'Tapered soft bristles', '50 picks'],
     'cr124': ['Two-piece set for braces wearers'],
 }
 
 
 # Products with no factory code yet: the card label is descriptive, not a SKU.
-NO_SKU = {'tc-loop'}
+NO_SKU = {'tc-loop', 'pf-refill', 'interfloss', 'tc-rainbow'}
 
 
 def specs_list(p):
